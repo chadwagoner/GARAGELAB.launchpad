@@ -27,7 +27,7 @@ if [[ $nfs_backup == true ]]; then
   doas chown alpine:alpine /mnt/backup
 
   ### UPDATE FSTAB
-  echo -e "$nfs_server:$nfs_volume /mnt/backup nfs rw,vers=4,rsize=32768,wsize=32768,soft 0 0" | doas tee -a /etc/fstab >/dev/null
+  echo -e "$nfs_backup_address:$nfs_backup_volume /mnt/backup nfs rw,vers=4,rsize=32768,wsize=32768,soft 0 0" | doas tee -a /etc/fstab >/dev/null
 fi
 
 if [[ $nfs_media == true ]]; then
@@ -50,7 +50,7 @@ if [[ $nfs_media == true ]]; then
   doas chown alpine:alpine /mnt/media
 
   ### UPDATE FSTAB
-  echo -e "$nfs_server:$nfs_volume /mnt/media nfs rw,vers=4,rsize=32768,wsize=32768,soft 0 0" | doas tee -a /etc/fstab >/dev/null
+  echo -e "$nfs_media_address:$nfs_media_volume /mnt/media nfs rw,vers=4,rsize=32768,wsize=32768,soft 0 0" | doas tee -a /etc/fstab >/dev/null
 fi
 
 ### MOUNT
