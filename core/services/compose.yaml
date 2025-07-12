@@ -38,7 +38,7 @@ services:
     labels:
       komodo.skip:
       tsbridge.enable: true
-      tsbridge.service.backend_addr: ":1411"
+      tsbridge.service.backend_addr: "pocket-id:1411"
       tsbridge.service.name: "id"
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -65,7 +65,7 @@ services:
     labels:
       komodo.skip:
       tsbridge.enable: true
-      tsbridge.service.backend_addr: ":9120"
+      tsbridge.service.backend_addr: "komodo:9120"
       tsbridge.service.name: "komodo"
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -81,9 +81,9 @@ services:
       - ${SERVICE_PATH}/core/.env.mongo
     networks:
       - db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${KOMODO_DATABASE_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DATABASE_PASSWORD}
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: ${KOMODO_DATABASE_USERNAME}
+    #   MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DATABASE_PASSWORD}
     labels:
       komodo.skip:
     volumes:
