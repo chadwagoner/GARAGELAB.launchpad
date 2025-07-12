@@ -24,4 +24,4 @@ doas rm -rf $service_path/core/pocket-id/data/*
 doas rm -rf $service_path/core/pocket-id/data/.*
 
 ### START SERVICE(S)
-docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.pocket-id up pocket-id -d --force-recreate #> /dev/null 2>&1
+docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.komodo --env-file $service_path/core/.env.mongo --env-file $service_path/core/.env.pocket-id --env-file $service_path/core/.env.tsbridge up -d --force-recreate pocket-id #> /dev/null 2>&1
