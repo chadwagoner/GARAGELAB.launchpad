@@ -1,0 +1,98 @@
+### TODO
+# ADD beszel
+# ADD dozzle
+# ADD gatus
+# ADD homarr
+
+services:
+  tsbridge:
+    image: ghcr.io/jtdowney/tsbridge:v0.9.1
+    container_name: tsbridge
+    command: ["--provider", "docker"]
+    restart: unless-stopped
+    env_file:
+      - .env.tsbridge
+    networks:
+      - proxy
+    labels:
+      komodo.skip:
+      tsbridge.tailscale.default_tags: "tag:proxy"
+      tsbridge.tailscale.oauth_client_id_env: ${TS_OAUTH_CLIENT_ID}
+      tsbridge.tailscale.oauth_client_secret_env: ${TS_OAUTH_CLIENT_SECRET}
+      tsbridge.tailscale.state_dir: "/var/lib/tsbridge"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${SERVICE_PATH}/core/${SERVICE}/data:/var/lib/tsbridge
+
+  pocket-id:
+    image: ghcr.io/pocket-id/pocket-id:v1.6.2
+    container_name: pocket-id
+    restart: unless-stopped
+    depends_on:
+      - tsbridge
+    env_file:
+      - .env.pocket-id
+    networks:
+      - proxy
+    labels:
+      komodo.skip:
+      tsbridge.enable: true
+      tsbridge.service.backend_addr: ":1411"
+      tsbridge.service.name: "id"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH}/core/${SERVICE}/data:/app/data
+    healthcheck:
+      test: "curl -f http://localhost:1411/healthz"
+      interval: 1m30s
+      timeout: 5s
+      retries: 2
+      start_period: 10s
+
+  komodo:
+    image: ghcr.io/moghtech/komodo-core:1.18.4
+    container_name: komodo
+    restart: unless-stopped
+    depends_on:
+      - mongo
+      - pocket-id
+    env_file:
+      - .env.komodo
+    networks:
+      - db
+      - proxy
+    labels:
+      komodo.skip:
+      tsbridge.enable: true
+      tsbridge.service.backend_addr: ":9120"
+      tsbridge.service.name: ${SERVICE}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH}/core/${SERVICE}/repo-cache:/repo-cache
+      - ${SERVICE_PATH}/core/${SERVICE}/syncs:/syncs
+
+  mongo:
+    image: mongo:8.0.11
+    container_name: mongo
+    restart: unless-stopped
+    command: --quiet --wiredTigerCacheSizeGB 0.25
+    env_file:
+      - .env.mongo
+    networks:
+      - db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${KOMODO_DATABASE_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${KOMODO_DATABASE_PASSWORD}
+    labels:
+      komodo.skip:
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH}/core/${SERVICE}/data:/data/db
+      - ${SERVICE_PATH}/core/${SERVICE}/config:/data/configdb
+
+networks:
+  db:
+    external: true
+  proxy:
+    external: true
