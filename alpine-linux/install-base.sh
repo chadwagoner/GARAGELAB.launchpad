@@ -90,6 +90,7 @@ if [[ $install_docker == true ]]; then
   ### CREATE DEFAULT DOCKER NETWORKS
   doas docker network create db >/dev/null 2>&1
   doas docker network create internal >/dev/null 2>&1
+  doas docker network create management >/dev/null 2>&1
   doas docker network create proxy >/dev/null 2>&1
 
   ### CREATE DEFAULT SERVICE DIRECTORY
