@@ -38,9 +38,9 @@ services:
     labels:
       komodo.skip:
       tsbridge.enable: true
-      tsbridge.service.backend_addr: "1411"
       tsbridge.service.ephemeral: true
       tsbridge.service.name: "id"
+      tsbridge.service.port: "1411"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${SERVICE_PATH}/core/pocket-id/data:/app/data
@@ -66,9 +66,9 @@ services:
     labels:
       komodo.skip:
       tsbridge.enable: true
-      tsbridge.service.backend_addr: "9120"
       tsbridge.service.ephemeral: true
       tsbridge.service.name: "komodo"
+      tsbridge.service.port: "9120"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${SERVICE_PATH}/core/komodo/repo-cache:/repo-cache
