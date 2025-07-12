@@ -8,4 +8,4 @@ service_path=${service_path:-'/opt/services'}
 curl -sL -o $service_path/core/services/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/compose.yaml
 
 ### START SERVICE(S)
-docker compose -f $service_path/core/services/compose.yaml --env-file $service_path/core/services/.env --env-file $service_path/core/services/.env.komodo --env-file $service_path/core/services/.env.mongo --env-file $service_path/core/services/.env.pocket-id --env-file $service_path/core/services/.env.tsbridge up -d
+docker compose -f $service_path/core/services/compose.yaml --env-file $service_path/core/services/.env --env-file $service_path/core/services/.env.komodo --env-file $service_path/core/services/.env.mongo --env-file $service_path/core/services/.env.pocket-id --env-file $service_path/core/services/.env.tsbridge --profile komodo --profile pocket-id up -d
