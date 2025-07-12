@@ -17,40 +17,40 @@ if [[ -z $tailscale_oauth_secret ]]; then
 fi
 
 ### MAKE CORE SERVICE DIRECTORIES
-mkdir -p $service_path/core/komodo/{repo-cache,syncs}
-mkdir -p $service_path/core/mongo/{config,data}
-mkdir -p $service_path/core/pocket-id/data
-mkdir -p $service_path/core/tsbridge/data
+mkdir -p $service_path/core/services/komodo/{repo-cache,syncs}
+mkdir -p $service_path/core/services/mongo/{config,data}
+mkdir -p $service_path/core/services/pocket-id/data
+mkdir -p $service_path/core/services/tsbridge/data
 
 ### CREATE .ENV
-cat > $service_path/core/.env <<EOF
+cat > $service_path/core/services/.env <<EOF
 SERVICE_PATH: $service_path
 EOF
 
 ### CREATE .ENV.KOMODO
-cat > $service_path/core/.env.komodo <<EOF
+cat > $service_path/core/services/.env.komodo <<EOF
 SERVICE: komodo
 EOF
 
 ### CREATE .ENV.MONGO
-cat > $service_path/core/.env.mongo <<EOF
+cat > $service_path/core/services/.env.mongo <<EOF
 SERVICE: mongo
 EOF
 
 ### CREATE .ENV.POCKET-ID
-cat > $service_path/core/.env.pocket-id <<EOF
+cat > $service_path/core/services/.env.pocket-id <<EOF
 SERVICE: pocket-id
 EOF
 
 ### CREATE .ENV.TSBRIDGE
-cat > $service_path/core/.env.tsbridge <<EOF
+cat > $service_path/core/services/.env.tsbridge <<EOF
 SERVICE: tsbridge
 TS_OAUTH_CLIENT_ID: $tailscale_oauth_id
 TS_OAUTH_CLIENT_SECRET: $tailscale_oauth_secret
 EOF
 
 ### GET COMPOSE FILE
-curl -sL -o $service_path/core/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/compose.yaml
+curl -sL -o $service_path/core/services/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/compose.yaml
 
 ### START SERVICE(S)
-docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.komodo --env-file $service_path/core/.env.mongo --env-file $service_path/core/.env.pocket-id --env-file $service_path/core/.env.tsbridge up -d > /dev/null 2>&1
+docker compose -f $service_path/core/services/compose.yaml --env-file $service_path/core/services/.env --env-file $service_path/core/services/.env.komodo --env-file $service_path/core/services/.env.mongo --env-file $service_path/core/services/.env.pocket-id --env-file $service_path/core/services/.env.tsbridge up -d > /dev/null 2>&1
