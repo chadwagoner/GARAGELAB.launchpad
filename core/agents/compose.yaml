@@ -6,6 +6,8 @@ services:
     image: ghcr.io/moghtech/komodo-periphery:1.18.4
     container_name: komodo-agent
     restart: unless-stopped
+    profiles:
+      - komodo-agent
     env_file:
       - ${SERVICE_PATH}/core/agents/.env.komodo-agent
     networks:

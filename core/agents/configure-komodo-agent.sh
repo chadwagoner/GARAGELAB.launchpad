@@ -24,4 +24,4 @@ doas rm -rf $service_path/core/agents/komodo-agent/*
 doas rm -rf $service_path/core/agents/komodo-agent/.*
 
 ### START SERVICE(S)
-docker compose -f $service_path/core/agents/compose.yaml --env-file $service_path/core/agents/.env --env-file $service_path/core/agents/.env.komodo-agent up -d --force-recreate komodo-agent #> /dev/null 2>&1
+docker compose -f $service_path/core/agents/compose.yaml --env-file $service_path/core/agents/.env --env-file $service_path/core/agents/.env.komodo-agent --profile komodo-agent up -d --force-recreate > /dev/null 2>&1
