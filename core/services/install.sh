@@ -19,7 +19,7 @@ fi
 ### MAKE CORE SERVICE DIRECTORIES
 mkdir -p $service_path/core/komodo/{repo-cache,syncs}
 mkdir -p $service_path/core/mongo/{config,data}
-mkdir -p $service_path/core/pocket-id/data
+mkdir -p $service_path/core/id/data
 mkdir -p $service_path/core/tsbridge/data
 
 ### CREATE .ENV
@@ -38,8 +38,8 @@ SERVICE: mongo
 EOF
 
 ### CREATE .ENV.POCKET-ID
-cat > $service_path/core/.env.pocket-id <<EOF
-SERVICE: pocket-id
+cat > $service_path/core/.env.id <<EOF
+SERVICE: id
 EOF
 
 ### CREATE .ENV.TSBRIDGE
@@ -53,4 +53,4 @@ EOF
 curl -sL -o $service_path/core/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/compose.yaml
 
 ### START SERVICE(S)
-docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.komodo --env-file $service_path/core/.env.mongo --env-file $service_path/core/.env.pocket-id --env-file $service_path/core/.env.tsbridge up -d > /dev/null 2>&1
+docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.id --env-file $service_path/core/.env.komodo --env-file $service_path/core/.env.mongo --env-file $service_path/core/.env.tsbridge up -d > /dev/null 2>&1

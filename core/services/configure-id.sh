@@ -11,7 +11,7 @@ if [[ -z $service_url ]]; then
 fi
 
 ### CREATE .ENV.POCKET-ID
-cat > $service_path/core/.env.pocket-id <<EOF
+cat > $service_path/core/.env.id <<EOF
 ANALYTICS_DISABLED: true
 APP_URL: $service_url
 PGID: 1000
@@ -20,4 +20,4 @@ TRUST_PROXY: true
 EOF
 
 ### START SERVICE(S)
-docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.komodo --env-file $service_path/core/.env.mongo --env-file $service_path/core/.env.pocket-id --env-file $service_path/core/.env.tsbridge --profile pocket-id up -d > /dev/null 2>&1
+docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.id --env-file $service_path/core/.env.komodo --env-file $service_path/core/.env.mongo --env-file $service_path/core/.env.tsbridge --profile id up -d > /dev/null 2>&1
