@@ -29,6 +29,8 @@ services:
     image: ghcr.io/pocket-id/pocket-id:v1.6.2
     container_name: pocket-id
     restart: unless-stopped
+    profiles:
+      - pocket-id
     depends_on:
       - tsbridge
     env_file:
@@ -54,6 +56,8 @@ services:
     image: ghcr.io/moghtech/komodo-core:1.18.4
     container_name: komodo
     restart: unless-stopped
+    profiles:
+      - komodo
     depends_on:
       - mongo
       - pocket-id
@@ -76,6 +80,8 @@ services:
     image: mongo:8.0.11
     container_name: mongo
     restart: unless-stopped
+    profiles:
+      - komodo
     command: --quiet --wiredTigerCacheSizeGB 0.25
     env_file:
       - ${SERVICE_PATH}/core/services/.env.mongo

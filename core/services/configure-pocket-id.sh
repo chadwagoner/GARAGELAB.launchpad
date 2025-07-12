@@ -19,12 +19,5 @@ PUID: 1000
 TRUST_PROXY: true
 EOF
 
-### STOP SERVICE(S)
-docker compose -f $service_path/core/services/compose.yaml --env-file $service_path/core/services/.env --env-file $service_path/core/services/.env.komodo --env-file $service_path/core/services/.env.mongo --env-file $service_path/core/services/.env.pocket-id --env-file $service_path/core/services/.env.tsbridge down pocket-id
-
-### CLEAN SERVICE DIRECTORIES
-doas rm -rf $service_path/core/services/pocket-id/data/*
-doas rm -rf $service_path/core/services/pocket-id/data/.*
-
 ### START SERVICE(S)
-docker compose -f $service_path/core/services/compose.yaml --env-file $service_path/core/services/.env --env-file $service_path/core/services/.env.komodo --env-file $service_path/core/services/.env.mongo --env-file $service_path/core/services/.env.pocket-id --env-file $service_path/core/services/.env.tsbridge up -d --force-recreate pocket-id #> /dev/null 2>&1
+docker compose -f $service_path/core/services/compose.yaml --env-file $service_path/core/services/.env --env-file $service_path/core/services/.env.komodo --env-file $service_path/core/services/.env.mongo --env-file $service_path/core/services/.env.pocket-id --env-file $service_path/core/services/.env.tsbridge --profile pocket-id up -d #> /dev/null 2>&1

@@ -91,14 +91,5 @@ MONGO_INITDB_ROOT_PASSWORD: $mongo_password
 MONGO_INITDB_ROOT_USERNAME: $mongo_username
 EOF
 
-### STOP SERVICE(S)
-docker compose -f $service_path/core/services/compose.yaml --env-file $service_path/core/services/.env --env-file $service_path/core/services/.env.komodo --env-file $service_path/core/services/.env.mongo --env-file $service_path/core/services/.env.pocket-id --env-file $service_path/core/services/.env.tsbridge down komodo mongo
-
-### CLEAN SERVICE DIRECTORIES
-doas rm -rf $service_path/core/services/mongo/data/*
-doas rm -rf $service_path/core/services/mongo/data/.*
-doas rm -rf $service_path/core/services/mongo/config/*
-doas rm -rf $service_path/core/services/mongo/config/.*
-
 ### START SERVICE(S)
-docker compose -f $service_path/core/services/compose.yaml --env-file $service_path/core/services/.env --env-file $service_path/core/services/.env.komodo --env-file $service_path/core/services/.env.mongo --env-file $service_path/core/services/.env.pocket-id --env-file $service_path/core/services/.env.tsbridge up -d --force-recreate komodo mongo #> /dev/null 2>&1
+docker compose -f $service_path/core/services/compose.yaml --env-file $service_path/core/services/.env --env-file $service_path/core/services/.env.komodo --env-file $service_path/core/services/.env.mongo --env-file $service_path/core/services/.env.pocket-id --env-file $service_path/core/services/.env.tsbridge --profile komodo up -d --force-recreate #> /dev/null 2>&1
