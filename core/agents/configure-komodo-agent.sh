@@ -8,7 +8,7 @@ read -p '[REQUIRED] KOMODO PASSKEY [changeme123]: ' komodo_passkey < /dev/tty
 komodo_passkey=${komodo_passkey:-'changeme123'}
 
 ### CREATE .ENV
-cat > $service_path/core/agents/.env.komodo-agent <<EOF
+cat > $service_path/agents/.env.komodo-agent <<EOF
 PERIPHERY_DISABLE_TERMINALS: false
 PERIPHERY_INCLUDE_DISK_MOUNTS: /etc/hostname
 PERIPHERY_PASSKEYS: $komodo_passkey
@@ -16,12 +16,5 @@ PERIPHERY_ROOT_DIRECTORY: $service_path/komodo-agent
 PERIPHERY_SSL_ENABLED: true
 EOF
 
-### STOP SERVICE(S)
-docker compose -f $service_path/core/agents/compose.yaml --env-file $service_path/core/agents/.env --env-file $service_path/core/agents/.env.komodo-agent down komodo-agent
-
-### CLEAN SERVICE DIRECTORIES
-doas rm -rf $service_path/core/agents/komodo-agent/*
-doas rm -rf $service_path/core/agents/komodo-agent/.*
-
 ### START SERVICE(S)
-docker compose -f $service_path/core/agents/compose.yaml --env-file $service_path/core/agents/.env --env-file $service_path/core/agents/.env.komodo-agent --profile komodo-agent up -d --force-recreate > /dev/null 2>&1
+docker compose -f $service_path/agents/compose.yaml --env-file $service_path/agents/.env --env-file $service_path/agents/.env.komodo-agent --profile komodo-agent up -d --force-recreate > /dev/null 2>&1
