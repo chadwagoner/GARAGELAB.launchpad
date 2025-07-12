@@ -11,7 +11,7 @@ services:
     command: ["--provider", "docker"]
     restart: unless-stopped
     env_file:
-      - .env.tsbridge
+      - ${SERVICE_PATH}/core/.env.tsbridge
     networks:
       - proxy
     labels:
@@ -23,7 +23,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${SERVICE_PATH}/core/${SERVICE}/data:/var/lib/tsbridge
+      - ${SERVICE_PATH}/core/tsbridge/data:/var/lib/tsbridge
 
   pocket-id:
     image: ghcr.io/pocket-id/pocket-id:v1.6.2
@@ -32,7 +32,7 @@ services:
     depends_on:
       - tsbridge
     env_file:
-      - .env.pocket-id
+      - ${SERVICE_PATH}/core/.env.pocket-id
     networks:
       - proxy
     labels:
@@ -42,7 +42,7 @@ services:
       tsbridge.service.name: "id"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${SERVICE_PATH}/core/${SERVICE}/data:/app/data
+      - ${SERVICE_PATH}/core/pocket-id/data:/app/data
     healthcheck:
       test: "curl -f http://localhost:1411/healthz"
       interval: 1m30s
@@ -58,7 +58,7 @@ services:
       - mongo
       - pocket-id
     env_file:
-      - .env.komodo
+      - ${SERVICE_PATH}/core/.env.komodo
     networks:
       - db
       - proxy
@@ -66,11 +66,11 @@ services:
       komodo.skip:
       tsbridge.enable: true
       tsbridge.service.backend_addr: ":9120"
-      tsbridge.service.name: ${SERVICE}
+      tsbridge.service.name: "komodo"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${SERVICE_PATH}/core/${SERVICE}/repo-cache:/repo-cache
-      - ${SERVICE_PATH}/core/${SERVICE}/syncs:/syncs
+      - ${SERVICE_PATH}/core/komodo/repo-cache:/repo-cache
+      - ${SERVICE_PATH}/core/komodo/syncs:/syncs
 
   mongo:
     image: mongo:8.0.11
@@ -78,7 +78,7 @@ services:
     restart: unless-stopped
     command: --quiet --wiredTigerCacheSizeGB 0.25
     env_file:
-      - .env.mongo
+      - ${SERVICE_PATH}/core/.env.mongo
     networks:
       - db
     environment:
@@ -88,8 +88,8 @@ services:
       komodo.skip:
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${SERVICE_PATH}/core/${SERVICE}/data:/data/db
-      - ${SERVICE_PATH}/core/${SERVICE}/config:/data/configdb
+      - ${SERVICE_PATH}/core/mongo/data:/data/db
+      - ${SERVICE_PATH}/core/mongo/config:/data/configdb
 
 networks:
   db:
