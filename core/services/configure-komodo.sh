@@ -47,7 +47,7 @@ if [[ $oidc_enable == true ]]; then
 fi
 
 ### CREATE .ENV.KOMODO
-cat > $service_path/core/.env-komodo <<EOF
+cat > $service_path/core/.env.komodo <<EOF
 KOMODO_DATABASE_ADDRESS: "mongo:27017"
 KOMODO_DATABASE_PASSWORD: $mongo_password
 KOMODO_DATABASE_USERNAME: $mongo_username
@@ -70,7 +70,7 @@ EOF
 
 ### INJECT AUTH VARIABLES BASED ON OIDC
 if [[ $oidc_enable == true ]]; then
-  cat >> $service_path/$service/.env <<EOF
+  cat >> $service_path/core/.env.komodo <<EOF
 KOMODO_LOCAL_AUTH: false
 KOMODO_OIDC_CLIENT_ID: $oidc_client_id
 KOMODO_OIDC_CLIENT_SECRET: $oidc_client_secret
@@ -79,14 +79,14 @@ KOMODO_OIDC_PROVIDER: $oidc_provider
 KOMODO_OIDC_USE_FULL_EMAIL: $oidc_use_email
 EOF
 else
-  cat >> $service_path/$service/.env <<EOF
+  cat >> $service_path/core/.env.komodo <<EOF
 KOMODO_LOCAL_AUTH: true
 KOMODO_OIDC_ENABLED: $oidc_enable
 EOF
 fi
 
 ### CREATE .ENV.MONGO
-cat > $service_path/core/.env-mongo <<EOF
+cat > $service_path/core/.env.mongo <<EOF
 MONGO_INITDB_ROOT_PASSWORD: $mongo_password
 MONGO_INITDB_ROOT_USERNAME: $mongo_username
 EOF
