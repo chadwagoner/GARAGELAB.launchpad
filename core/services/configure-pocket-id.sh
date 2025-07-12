@@ -19,6 +19,9 @@ PUID: 1000
 TRUST_PROXY: true
 EOF
 
+### STOP SERVICE(S)
+docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.komodo --env-file $service_path/core/.env.mongo --env-file $service_path/core/.env.pocket-id --env-file $service_path/core/.env.tsbridge down pocket-id
+
 ### CLEAN SERVICE DIRECTORIES
 doas rm -rf $service_path/core/pocket-id/data/*
 doas rm -rf $service_path/core/pocket-id/data/.*
