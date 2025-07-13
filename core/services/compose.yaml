@@ -59,8 +59,8 @@ services:
     profiles:
       - komodo
     depends_on:
+      - id
       - mongo
-      - pocket-id
     env_file:
       - ${SERVICE_PATH}/core/.env.komodo
     networks:
