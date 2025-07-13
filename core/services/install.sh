@@ -27,6 +27,11 @@ cat > $service_path/core/.env <<EOF
 SERVICE_PATH: $service_path
 EOF
 
+### CREATE .ENV.POCKET-ID
+cat > $service_path/core/.env.id <<EOF
+SERVICE: id
+EOF
+
 ### CREATE .ENV.KOMODO
 cat > $service_path/core/.env.komodo <<EOF
 SERVICE: komodo
@@ -37,14 +42,8 @@ cat > $service_path/core/.env.mongo <<EOF
 SERVICE: mongo
 EOF
 
-### CREATE .ENV.POCKET-ID
-cat > $service_path/core/.env.id <<EOF
-SERVICE: id
-EOF
-
 ### CREATE .ENV.TSBRIDGE
 cat > $service_path/core/.env.tsbridge <<EOF
-SERVICE: tsbridge
 TS_OAUTH_CLIENT_ID: $tailscale_oauth_id
 TS_OAUTH_CLIENT_SECRET: $tailscale_oauth_secret
 EOF
