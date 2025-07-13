@@ -10,10 +10,10 @@ curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.co
 
 ### CONFIGURE
 
-#### POCKET-ID
+#### ID
 
 ```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/configure-pocket-id.sh | bash
+curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/configure-id.sh | bash
 ```
 
 #### KOMODO
