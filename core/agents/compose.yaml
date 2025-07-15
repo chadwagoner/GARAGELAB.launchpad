@@ -20,7 +20,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - /proc:/proc
-      - ${SERVICE_PATH}/agents/komodo-agent:${SERVICE_PATH}/komodo-agent
+      - ${SERVICE_PATH}/agents/komodo-agent:${SERVICE_PATH}/agents/komodo-agent
 
 networks:
   management:
