@@ -59,7 +59,6 @@ services:
     profiles:
       - komodo
     depends_on:
-      - id
       - mongo
     env_file:
       - ${SERVICE_PATH}/core/.env.komodo

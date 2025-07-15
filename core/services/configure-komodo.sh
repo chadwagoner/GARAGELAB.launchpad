@@ -61,7 +61,7 @@ KOMODO_HOST: $service_url
 KOMODO_JWT_SECRET: "a_random_jwt_secret"
 KOMODO_JWT_TTL: "1-day"
 KOMODO_MONITORING_INTERVAL: "15-sec"
-KOMODO_PASSKEY: $komodo_passkey
+KOMODO_PASSKEY: "$komodo_passkey"
 KOMODO_RESOURCE_POLL_INTERVAL: "1-hr"
 KOMODO_TITLE: "Komodo"
 KOMODO_TRANSPARENT_MODE: false
