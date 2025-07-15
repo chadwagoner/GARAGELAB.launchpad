@@ -92,4 +92,4 @@ MONGO_INITDB_ROOT_USERNAME: $mongo_username
 EOF
 
 ### START SERVICE(S)
-docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.komodo --env-file $service_path/core/.env.mongo --env-file $service_path/core/.env.pocket-id --env-file $service_path/core/.env.tsbridge --profile komodo up -d --force-recreate > /dev/null 2>&1
+docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.id --env-file $service_path/core/.env.komodo --env-file $service_path/core/.env.mongo --env-file $service_path/core/.env.tsbridge --profile komodo up -d > /dev/null 2>&1
