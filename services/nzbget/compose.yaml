@@ -4,9 +4,9 @@ services:
     container_name: nzbget
     restart: unless-stopped
     environment:
-      PUID: 1000
       PGID: 1000
+      PUID: 1000
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${SERVICE_PATH}/nzbget/config:/config
       - ${DOWNLOAD_PATH}:/downloads
+      - ${SERVICE_PATH}/nzbget/config:/config
