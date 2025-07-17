@@ -8,4 +8,4 @@ services:
       PGID: 1000
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${CONFIG_PATH}/prowlarr/config:/config
+      - ${SERVICE_PATH}/prowlarr/config:/config
