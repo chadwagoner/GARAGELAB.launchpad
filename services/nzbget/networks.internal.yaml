@@ -1,0 +1,10 @@
+services:
+  nzbget:
+    networks:
+      - internal
+    ports:
+      - 6789:6789
+
+networks:
+  internal:
+    external: true

@@ -1,0 +1,8 @@
+services:
+  nzbget:
+    depends_on:
+      - tsbridge
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "nzbget"
+      tsbridge.service.port: "6789"

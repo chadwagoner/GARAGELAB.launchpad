@@ -1,0 +1,8 @@
+services:
+  nzbget:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
