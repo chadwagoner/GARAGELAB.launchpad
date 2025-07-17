@@ -1,0 +1,10 @@
+services:
+  sonarr:
+    networks:
+      - internal
+    ports:
+      - 8989:8989
+
+networks:
+  internal:
+    external: true

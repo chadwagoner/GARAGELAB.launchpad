@@ -1,0 +1,13 @@
+services:
+  sonarr:
+    image: linuxserver/sonarr:latest
+    container_name: sonarr
+    restart: unless-stopped
+    environment:
+      PGID: 1000
+      PUID: 1000
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOWNLOAD_PATH}:/downloads
+      - ${MEDIA_PATH}:/media
+      - ${SERVICE_PATH}/sonarr/config:/config

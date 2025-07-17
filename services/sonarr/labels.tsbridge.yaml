@@ -1,0 +1,6 @@
+services:
+  sonarr:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "sonarr"
+      tsbridge.service.port: "8989"
