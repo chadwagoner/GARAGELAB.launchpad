@@ -1,0 +1,8 @@
+services:
+  prowlarr:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

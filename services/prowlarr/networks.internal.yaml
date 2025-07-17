@@ -1,0 +1,10 @@
+services:
+  prowlarr:
+    networks:
+      - internal
+    ports:
+      - 9696:9696
+
+networks:
+  internal:
+    external: true

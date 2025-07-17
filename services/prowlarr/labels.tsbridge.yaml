@@ -1,0 +1,6 @@
+services:
+  prowlarr:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "prowlarr"
+      tsbridge.service.port: "9696"
