@@ -1,0 +1,5 @@
+services:
+  overseerr:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.funnel_enabled: true

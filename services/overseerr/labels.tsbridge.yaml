@@ -1,0 +1,6 @@
+services:
+  overseerr:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "overseerr"
+      tsbridge.service.port: "5055"

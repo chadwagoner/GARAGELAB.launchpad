@@ -1,0 +1,8 @@
+services:
+  overseerr:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

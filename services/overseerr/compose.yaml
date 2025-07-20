@@ -1,0 +1,11 @@
+services:
+  overseerr:
+    image: sctx/overseerr:latest
+    container_name: overseerr
+    restart: unless-stopped
+    environment:
+      PUID: 1000
+      PGIU: 1000
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH}/overseerr/config:/app/config

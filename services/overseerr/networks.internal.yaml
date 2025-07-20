@@ -1,0 +1,10 @@
+services:
+  overseerr:
+    networks:
+      - internal
+    ports:
+      - 5055:5055
+
+networks:
+  internal:
+    external: true
