@@ -1,0 +1,8 @@
+services:
+  satisfactory-server:
+    image: wolveix/satisfactory-server:latest
+    container_name: satisfactory-server
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH}/satisfactory-server/config:/config

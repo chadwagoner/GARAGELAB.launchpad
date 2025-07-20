@@ -1,0 +1,11 @@
+services:
+  satisfactory-server:
+    networks:
+      - gaming
+    ports:
+      - 7777:7777/tcp
+      - 7777:7777/udp
+
+networks:
+  gaming:
+    external: true
