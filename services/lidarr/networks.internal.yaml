@@ -1,0 +1,10 @@
+services:
+  lidarr:
+    networks:
+      - internal
+    ports:
+      - 8686:8686
+
+networks:
+  internal:
+    external: true

@@ -1,0 +1,13 @@
+services:
+  lidarr:
+    image: linuxserver/lidarr:latest
+    container_name: lidarr
+    restart: unless-stopped
+    environment:
+      PGID: 1000
+      PUID: 1000
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOWNLOAD_PATH}:/downloads
+      - ${MEDIA_PATH}:/media
+      - ${SERVICE_PATH}/lidarr/config:/config

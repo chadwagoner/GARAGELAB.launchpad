@@ -1,0 +1,6 @@
+services:
+  lidarr:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "lidarr"
+      tsbridge.service.port: "8686"
