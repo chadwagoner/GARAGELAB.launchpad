@@ -1,0 +1,8 @@
+services:
+  tautulli:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

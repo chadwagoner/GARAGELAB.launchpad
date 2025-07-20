@@ -1,0 +1,10 @@
+services:
+  tautulli:
+    networks:
+      - internal
+    ports:
+      - 8181:8181
+
+networks:
+  internal:
+    external: true

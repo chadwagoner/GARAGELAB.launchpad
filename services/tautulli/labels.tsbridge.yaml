@@ -1,0 +1,6 @@
+services:
+  tautulli:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "tautulli"
+      tsbridge.service.port: "8181"
