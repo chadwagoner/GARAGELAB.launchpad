@@ -1,0 +1,10 @@
+services:
+  adguard-sync:
+    networks:
+      - internal
+    ports:
+      - 8080:8080
+
+networks:
+  internal:
+    external: true

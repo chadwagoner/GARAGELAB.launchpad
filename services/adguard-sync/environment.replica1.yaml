@@ -1,0 +1,6 @@
+services:
+  adguard-sync:
+    environment:
+      REPLICA1_URL: ${REPLICA1_URL}
+      REPLICA1_USERNAME: ${REPLICA1_USERNAME}
+      REPLICA1_PASSWORD: ${REPLICA1_PASSWORD}

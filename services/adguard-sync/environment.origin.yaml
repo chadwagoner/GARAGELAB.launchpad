@@ -1,0 +1,6 @@
+services:
+  adguard-sync:
+    environment:
+      ORIGIN_URL: ${ORIGIN_URL}
+      ORIGIN_USERNAME: ${ORIGIN_USERNAME}
+      ORIGIN_PASSWORD: ${ORIGIN_PASSWORD}

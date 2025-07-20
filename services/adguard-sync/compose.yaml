@@ -1,0 +1,15 @@
+services:
+  adguard-sync:
+    image: linuxserver/adguardhome-sync:latest
+    container_name: adguard-sync
+    restart: unless-stopped
+    environment:
+      PGID: 1000
+      PUID: 1000
+      CRON: "*/15 * * * *"
+      RUN_ON_START: true
+      CONTINUE_ON_ERROR: true
+      API_PORT: 8080
+      API_DARK_MODE: true
+    volumes:
+      - ${SERVICE_PATH}/adguard-sync/config:/config
