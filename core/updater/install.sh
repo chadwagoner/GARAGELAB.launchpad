@@ -5,7 +5,7 @@ read -p '[REQUIRED] SERVICE PATH [/opt/services]: ' service_path < /dev/tty
 service_path=${service_path:-'/opt/services'}
 
 ### CREATE CORE-UPDATER
-cat << EOF | doas tee /etc/periodic/weekly/core-updater
+cat << EOF | doas tee /etc/periodic/weekly/core-updater >/dev/null
 #!/bin/bash
 
 ### UPDATE CORE SERVICES
