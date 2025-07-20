@@ -1,0 +1,6 @@
+services:
+  radarr:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "radarr"
+      tsbridge.service.port: "7878"

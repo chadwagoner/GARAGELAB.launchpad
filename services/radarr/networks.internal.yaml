@@ -1,0 +1,10 @@
+services:
+  radarr:
+    networks:
+      - internal
+    ports:
+      - 7878:7878
+
+networks:
+  internal:
+    external: true

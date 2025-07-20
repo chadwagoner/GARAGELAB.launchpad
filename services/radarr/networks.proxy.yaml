@@ -1,0 +1,8 @@
+services:
+  radarr:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
