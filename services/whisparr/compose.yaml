@@ -1,6 +1,6 @@
 services:
   whisparr:
-    image: linuxserver/whisparr:latest
+    image: ghcr.io/hotio/whisparr:latest
     container_name: whisparr
     restart: unless-stopped
     environment:
