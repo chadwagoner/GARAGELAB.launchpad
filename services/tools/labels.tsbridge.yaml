@@ -1,0 +1,6 @@
+services:
+  tools:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "tools"
+      tsbridge.service.port: "80"

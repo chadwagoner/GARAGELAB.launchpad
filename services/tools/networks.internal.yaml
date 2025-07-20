@@ -1,0 +1,10 @@
+services:
+  tools:
+    networks:
+      - internal
+    ports:
+      - 8088:80
+
+networks:
+  internal:
+    external: true

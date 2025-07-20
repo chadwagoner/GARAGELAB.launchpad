@@ -1,0 +1,8 @@
+services:
+  tools:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

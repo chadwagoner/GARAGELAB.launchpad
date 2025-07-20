@@ -1,0 +1,5 @@
+services:
+  tools:
+    image: ghcr.io/corentinth/it-tools:latest
+    container_name: tools
+    restart: unless-stopped
