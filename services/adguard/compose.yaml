@@ -1,0 +1,10 @@
+services:
+  adguard:
+    image: adguard/adguardhome:latest
+    container_name: adguard
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH}/adguard/config:/opt/adguardhome/conf
+      - ${SERVICE_PATH}/adguard/data:/opt/adguardhome/work
