@@ -68,3 +68,6 @@ if [[ -d $service_path/agents ]]; then
   fi
 fi
 EOF
+
+### ENSURE CORRECT PERMISSIONS
+doas chmod 755 /etc/periodic/weekly/core-updater
