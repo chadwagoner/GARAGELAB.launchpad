@@ -1,0 +1,8 @@
+services:
+  whisparr:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

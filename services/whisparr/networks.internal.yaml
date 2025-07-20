@@ -1,0 +1,10 @@
+services:
+  whisparr:
+    networks:
+      - internal
+    ports:
+      - 6969:6969
+
+networks:
+  internal:
+    external: true

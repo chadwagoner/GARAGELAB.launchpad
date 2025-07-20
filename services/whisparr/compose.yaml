@@ -1,0 +1,13 @@
+services:
+  whisparr:
+    image: linuxserver/whisparr:latest
+    container_name: whisparr
+    restart: unless-stopped
+    environment:
+      PGID: 1000
+      PUID: 1000
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOWNLOAD_PATH}:/downloads
+      - ${MEDIA_PATH}:/media
+      - ${SERVICE_PATH}/whisparr/config:/config

@@ -1,0 +1,6 @@
+services:
+  whisparr:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "whisparr"
+      tsbridge.service.port: "6969"
