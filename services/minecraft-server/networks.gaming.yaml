@@ -1,0 +1,11 @@
+services:
+  minecraft-server:
+    networks:
+      - gaming
+    ports:
+      - 19132:19132/tcp
+      - 19132:19132/udp
+
+networks:
+  gaming:
+    external: true

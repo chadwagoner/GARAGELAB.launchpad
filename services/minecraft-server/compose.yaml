@@ -1,0 +1,17 @@
+services:
+  minecraft-server:
+    image: itzg/minecraft-bedrock-server:latest
+    container_name: minecraft-server
+    restart: unless-stopped
+    environment:
+      EULA: true
+      DIFFICULTY: peaceful
+      GAMEMODE: creative
+      ONLINE_MODE: false
+      DEFAULT_PLAYER_PERMISSION_LEVEL: operator
+      ALLOW_CHEATS: true
+      SERVER_PORT: 19132
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH}/minecraft-server/config:/config
+      - ${SERVICE_PATH}/minecraft-server/data:/data
