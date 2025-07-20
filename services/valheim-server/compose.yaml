@@ -1,0 +1,14 @@
+services:
+  valheim-server:
+    image: lloesche/valheim-server:latest
+    container_name: valheim-server
+    restart: unless-stopped
+    environment:
+      SERVER_NAME: ${VALHEIM_SERVER}
+      WORLD_NAME: ${VALHEIM_WORLD}
+      SERVER_PASS: ${VALHEIM_PASSWORD}
+      SERVER_PUBLIC: false
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH}/valheim-server/config:/config
+      - ${SERVICE_PATH}/valheim-server/data:/opt/valheim

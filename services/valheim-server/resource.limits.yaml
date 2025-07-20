@@ -1,0 +1,8 @@
+services:
+  valheim-server:
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+        reservations:
+          memory: 2G

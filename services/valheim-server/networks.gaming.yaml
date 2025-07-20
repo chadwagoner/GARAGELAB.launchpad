@@ -1,0 +1,11 @@
+services:
+  valheim-server:
+    networks:
+      - gaming
+    ports:
+      - 2456-2457:2456-2457/tcp
+      - 2456-2457:2456-2457/udp
+
+networks:
+  gaming:
+    external: true
