@@ -32,6 +32,12 @@ if [[ $oidc_enable == true ]]; then
     echo "ERROR: OIDC CLIENT SECRET REQUIRED... Exiting"
     exit 1
   fi
+
+  read -p '[REQUIRED] OIDC ADMIN GROUP: ' oidc_admin_group < /dev/tty
+  if [[ -z $oidc_admin_group ]]; then
+    echo "ERROR: OIDC ADMIN GROUP REQUIRED... Exiting"
+    exit 1
+  fi
 fi
 
 ### MAKE HOMARR SERVICE DIRECTORIES
@@ -39,8 +45,10 @@ mkdir -p $service_path/core/homarr/data
 
 ### CREATE .ENV.HOMARR
 cat > $service_path/core/.env.homarr <<EOF
-SECRET_ENCRYPTION_KEY: $(openssl rand -hex 32)
 BASE_URL: $service_url
+DEFAULT_COLOR_SCHEME: dark
+DISABLE_ANALYTICS: true
+SECRET_ENCRYPTION_KEY: $(openssl rand -hex 32)
 EOF
 
 ### INJECT AUTH VARIABLES BASED ON OIDC
@@ -48,6 +56,7 @@ if [[ $oidc_enable == true ]]; then
   cat >> $service_path/core/.env.homarr <<EOF
 AUTH_OIDC_CLIENT_ID: $oidc_client_id
 AUTH_OIDC_CLIENT_SECRET: $oidc_client_secret
+AUTH_OIDC_GROUPS_ATTRIBUTE: $oidc_admin_group
 AUTH_OIDC_ISSUER: $oidc_provider
 AUTH_PROVIDERS: oidc
 EOF
