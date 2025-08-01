@@ -47,6 +47,14 @@ if [[ -d $service_path/core ]]; then
     else
       echo "WARNING: KOMODO DOES NOT EXIST... Skipping"
     fi
+
+    if [[ -n '\$(docker container list --filter 'name=^homarr$' --quiet)' ]]; then
+      docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env up homarr -d > /dev/null 2>&1
+      echo "SUCCESS: HOMARR UPDATED..."
+      sleep 30
+    else
+      echo "WARNING: HOMARR DOES NOT EXIST... Skipping"
+    fi
   fi
 fi
 

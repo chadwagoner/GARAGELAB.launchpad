@@ -2,7 +2,6 @@
 # ADD beszel
 # ADD dozzle
 # ADD gatus
-# ADD homarr
 
 services:
   tsbridge:
@@ -92,6 +91,26 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ${SERVICE_PATH}/core/mongo/data:/data/db
       - ${SERVICE_PATH}/core/mongo/config:/data/configdb
+
+  homarr:
+    image: ghcr.io/homarr-labs/homarr:v1.30.1
+    container_name: homarr
+    restart: unless-stopped
+    profiles:
+      - homarr
+    env_file:
+      - ${SERVICE_PATH}/core/.env.homarr
+    networks:
+      - proxy
+    labels:
+      komodo.skip:
+      tsbridge.enable: true
+      tsbridge.service.name: "homarr"
+      tsbridge.service.port: "7575"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${SERVICE_PATH}/core/homarr/data:/appdata
 
 networks:
   db:
