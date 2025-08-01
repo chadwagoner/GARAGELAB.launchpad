@@ -52,3 +52,5 @@ AUTH_OIDC_ISSUER: $oidc_provider
 AUTH_PROVIDERS: oidc
 EOF
 fi
+
+docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --profile homarr up -d > /dev/null 2>&1
