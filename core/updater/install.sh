@@ -19,7 +19,7 @@ if [[ -d $service_path/core ]]; then
     if [[ -n '\$(docker container list --filter 'name=^tsbridge$' --quiet)' ]]; then
       docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.id --env-file $service_path/core/.env.komodo --env-file $service_path/core/.env.mongo --env-file $service_path/core/.env.tsbridge up tsbridge -d > /dev/null 2>&1
       echo "SUCCESS: TSBRIDGE UPDATED..."
-      sleep 30
+      sleep 10
     else
       echo "WARNING: TSBRIDGE DOES NOT EXIST... Skipping"
     fi
@@ -27,7 +27,7 @@ if [[ -d $service_path/core ]]; then
     if [[ -n '\$(docker container list --filter 'name=^id$' --quiet)' ]]; then
       docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.id --env-file $service_path/core/.env.komodo --env-file $service_path/core/.env.mongo --env-file $service_path/core/.env.tsbridge up id -d > /dev/null 2>&1
       echo "SUCCESS: ID UPDATED..."
-      sleep 30
+      sleep 10
     else
       echo "WARNING: ID DOES NOT EXIST... Skipping"
     fi
@@ -35,7 +35,7 @@ if [[ -d $service_path/core ]]; then
     if [[ -n '\$(docker container list --filter 'name=^mongo$' --quiet)' ]]; then
       docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.id --env-file $service_path/core/.env.komodo --env-file $service_path/core/.env.mongo --env-file $service_path/core/.env.tsbridge up mongo -d > /dev/null 2>&1
       echo "SUCCESS: MONGO UPDATED..."
-      sleep 30
+      sleep 10
     else
       echo "WARNING: MONGO DOES NOT EXIST... Skipping"
     fi
@@ -43,7 +43,7 @@ if [[ -d $service_path/core ]]; then
     if [[ -n '\$(docker container list --filter 'name=^komodo$' --quiet)' ]]; then
       docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env --env-file $service_path/core/.env.id --env-file $service_path/core/.env.komodo --env-file $service_path/core/.env.mongo --env-file $service_path/core/.env.tsbridge up komodo -d > /dev/null 2>&1
       echo "SUCCESS: KOMODO UPDATED..."
-      sleep 30
+      sleep 10
     else
       echo "WARNING: KOMODO DOES NOT EXIST... Skipping"
     fi
@@ -51,7 +51,7 @@ if [[ -d $service_path/core ]]; then
     if [[ -n '\$(docker container list --filter 'name=^homarr$' --quiet)' ]]; then
       docker compose -f $service_path/core/compose.yaml --env-file $service_path/core/.env up homarr -d > /dev/null 2>&1
       echo "SUCCESS: HOMARR UPDATED..."
-      sleep 30
+      sleep 10
     else
       echo "WARNING: HOMARR DOES NOT EXIST... Skipping"
     fi
@@ -69,7 +69,7 @@ if [[ -d $service_path/agents ]]; then
     if [[ -n '\$(docker container list --filter 'name=^komodo-agent$' --quiet)' ]]; then
       docker compose -f $service_path/agents/compose.yaml --env-file $service_path/agents/.env --env-file $service_path/agents/.env.komodo-agent up komodo-agent -d > /dev/null 2>&1
       echo "SUCCESS: KOMODO-AGENT UPDATED..."
-      sleep 30
+      sleep 10
     else
       echo "WARNING: KOMODO-AGENT DOES NOT EXIST... Skipping"
     fi
