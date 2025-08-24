@@ -52,7 +52,7 @@ services:
       start_period: 10s
 
   komodo:
-    image: ghcr.io/moghtech/komodo-core:1.18.4
+    image: ghcr.io/moghtech/komodo-core:1.19.1
     container_name: komodo
     restart: unless-stopped
     profiles:
