@@ -1,10 +1,10 @@
 #!/bin/bash
 
 ### USER INPUT VARIABLES
-read -p '[OPTIONAL] ENABLE NFS FOR BACKUP [true/FASLE]: ' nfs_backup < /dev/tty
+read -p '[OPTIONAL] ENABLE NFS FOR BACKUP [true/FALSE]: ' nfs_backup < /dev/tty
 nfs_backup=${nfs_backup:-false}
 
-read -p '[OPTIONAL] ENABLE NFS FOR MEDIA [true/FASLE]: ' nfs_media < /dev/tty
+read -p '[OPTIONAL] ENABLE NFS FOR MEDIA [true/FALSE]: ' nfs_media < /dev/tty
 nfs_media=${nfs_media:-false}
 
 if [[ $nfs_backup == true ]]; then
