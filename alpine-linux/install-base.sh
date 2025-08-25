@@ -32,6 +32,13 @@ if [[ $install_nfs == true ]]; then
   apk_command+="nfs-utils "
 fi
 
+read -p '[OPTIONAL] INSTALL RSNAPSHOT [true/FALSE]: ' install_rsnapshot < /dev/tty
+install_rsnapshot=${install_rsnapshot:-false}
+
+if [[ $install_rsnapshot == true ]]; then
+  apk_command+="rsnapshot "
+fi
+
 read -p '[OPTIONAL] INSTALL TAILSCALE [true/FALSE]: ' install_tailscale < /dev/tty
 install_tailscale=${install_tailscale:-false}
 
@@ -39,8 +46,11 @@ if [[ $install_tailscale == true ]]; then
   apk_command+="tailscale@edge-community "
 fi
 
-read -p '[OPTIONAL] ENABLE MONTHLY AUTOMATIC UPDATES [true/FALSE]: ' enable_patchwork < /dev/tty
+read -p '[OPTIONAL] ENABLE AUTOMATIC MONTHLY UPDATES [true/FALSE]: ' enable_patchwork < /dev/tty
 enable_patchwork=${enable_patchwork:-false}
+
+read -p '[REQUIRED] IS THIS A PRIMARY DEVICE [TRUE/false]: ' primary_device < /dev/tty
+primary_device=${primary_device:-true}
 
 read -p '[OPTIONAL] REBOOT SYSTEM WHEN COMPLETE [TRUE/false]: ' reboot < /dev/tty
 reboot=${reboot:-true}
@@ -49,11 +59,15 @@ reboot=${reboot:-true}
 doas curl -sL -o /etc/apk/repositories -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/apk/repositories
 
 ### SET ROOT CRONTAB
-doas curl -sL -o /etc/crontabs/root -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/crontab/root
+if [[ $primary_device == true ]]; then
+  doas curl -sL -o /etc/crontabs/root -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/crontab/root.primary
+else
+  doas curl -sL -o /etc/crontabs/root -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/crontab/root.secondary
+fi
 
 ### DISABLE IPV6 NETWORKING
 echo -e "net.ipv6.conf.all.disable_ipv6 = 1" | doas tee /etc/sysctl.d/99-system.conf >/dev/null
-doas sysctl -p /etc/sysctl.d/99-system.conf
+doas sysctl -p /etc/sysctl.d/99-system.conf >/dev/null
 
 ### UPDATE OS
 doas apk upgrade -U --quiet
