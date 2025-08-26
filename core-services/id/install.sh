@@ -18,7 +18,7 @@ curl -sL -o /opt/core-services/id/compose.yaml -H 'Cache-Control: no-cache, no-s
 curl -sL -o /opt/core-services/id/.env -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/id/.env
 
 ### REPLACE .ENV VARIABLES
-sed -i "s/__APP_URL__/$service_url/g" /opt/core-services/id/.env
+sed -i "s#__APP_URL__#$service_url#g" /opt/core-services/id/.env
 
 ### GET INIT FILE
 doas curl -sL -o /etc/init.d/container_id -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/init/container_id
