@@ -10,7 +10,7 @@ stop_command_args="--rmi all --volumes"
 
 depend() {
         need container_tsbridge
-        use docker
+        use docker tailscale
 }
 
 start() {

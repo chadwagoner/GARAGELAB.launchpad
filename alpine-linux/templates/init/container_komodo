@@ -10,7 +10,11 @@ stop_command_args="--rmi all --volumes"
 
 depend() {
         need container_id
-        use docker
+        use docker tailscale
+}
+
+start_pre() {
+        sleep 30
 }
 
 start() {
