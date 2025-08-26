@@ -8,6 +8,20 @@
 doas apk add -U bash curl --quiet
 ```
 
+### LOCAL DEV
+
+#### BUILD
+
+```bash
+curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/local-build.sh | bash
+```
+
+#### DESTROY
+
+```bash
+curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/local-destroy.sh | bash
+```
+
 ### INSTALL
 
 #### BASE
