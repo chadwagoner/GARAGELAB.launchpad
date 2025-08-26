@@ -70,10 +70,10 @@ echo -e "net.ipv6.conf.all.disable_ipv6 = 1" | doas tee /etc/sysctl.d/99-system.
 doas sysctl -p /etc/sysctl.d/99-system.conf >/dev/null 2>&1
 
 ### UPDATE OS
-doas apk upgrade -U --quiet
+doas apk upgrade -U --quiet >/dev/null 2>&1
 
 ### INSTALL BASE PACKAGES
-doas apk add -U $apk_command --quiet
+doas apk add -U $apk_command --quiet >/dev/null 2>&1
 
 ### INSTALL DRIVER - BLUETOOTH
 if [[ $install_driver_bluetooth == true ]]; then
