@@ -13,7 +13,7 @@ if [[ -z $tailscale_oauth_secret ]]; then
   exit 1
 fi
 
-### MAKE CORE SERVICE DIRECTORIES
+### MAKE TSBRIDGE DIRECTORIES
 mkdir -p /opt/core-services/tsbridge
 mkdir -p /opt/core-services/tsbridge/data
 
@@ -32,7 +32,7 @@ doas curl -sL -o /etc/init.d/container_tsbridge -H 'Cache-Control: no-cache, no-
 doas chmod 755 /etc/init.d/container_tsbridge
 
 ### ENABLE BOOT START
-# rc-update add contaienr_tsbridge default
+doas rc-update add container_tsbridge default
 
-### START CORE SERVICE
-# rc-service container_tsbridge start
+### START TSBRIDGE
+doas rc-service container_tsbridge start

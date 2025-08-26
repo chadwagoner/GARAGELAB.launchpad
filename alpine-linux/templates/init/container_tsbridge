@@ -3,24 +3,29 @@
 name="tsbridge"
 description="container - tsbridge"
 
+restart_command="/usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml restart"
+start_command="/usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml up"
+stop_command="/usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml down"
+stop_command_args="--rmi all --volumes"
+
 depend() {
         use docker
 }
 
 start() {
-        ebegin "Starting tsbridge"
-        /usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml up --detach
+        ebegin "STARTING - $name"
+        ${start_command}
         eend $?
 }
 
 stop() {
-        ebegin "Stopping tsbridge"
-        /usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml stop
+        ebegin "STOPPING - $name"
+        ${stop_command} ${stop_command_args}
         eend $?
 }
 
 restart() {
-        ebegin "Restarting tsbridge"
-        /usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml restart
+        ebegin "RESTARTING - $name"
+        ${restart_command}
         eend $?
 }
