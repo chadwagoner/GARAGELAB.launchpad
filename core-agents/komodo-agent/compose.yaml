@@ -1,0 +1,22 @@
+services:
+  komodo-agent:
+    image: ghcr.io/moghtech/komodo-periphery:1.19.1
+    container_name: komodo-agent
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - management
+    ports:
+      - 8120:8120
+    labels:
+      komodo.skip:
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc:/proc
+      - /opt/core-agents/komodo-agent:/opt/core-agents/komodo-agent
+
+networks:
+  management:
+    external: true
