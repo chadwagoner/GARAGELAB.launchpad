@@ -28,11 +28,11 @@ sed -i "s/__TS_OAUTH_CLIENT_ID__/$tailscale_oauth_id/g" /opt/core-services/tsbri
 sed -i "s/__TS_OAUTH_CLIENT_SECRET__/$tailscale_oauth_secret/g" /opt/core-services/tsbridge/.env
 
 ### GET INIT FILE
-doas curl -sL -o /etc/init.d/container_tsbridge -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/init/container_tsbridge
-doas chmod 755 /etc/init.d/container_tsbridge
+doas curl -sL -o /etc/init.d/tsbridge -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/init/tsbridge
+doas chmod 755 /etc/init.d/tsbridge
 
 ### ENABLE BOOT START
-doas rc-update add container_tsbridge default
+doas rc-update add tsbridge default
 
 ### START TSBRIDGE
-doas rc-service container_tsbridge start
+doas rc-service tsbridge start

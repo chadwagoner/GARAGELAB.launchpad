@@ -59,11 +59,11 @@ sed -i "s#__OIDC_CLIENT_SECRET__#$oidc_client_secret#g" /opt/core-services/komod
 sed -i "s#__OIDC_USE_EMAIL__#$oidc_use_email#g" /opt/core-services/komodo/.env
 
 ### GET INIT FILE
-doas curl -sL -o /etc/init.d/container_komodo -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/init/container_komodo
-doas chmod 755 /etc/init.d/container_komodo
+doas curl -sL -o /etc/init.d/komodo -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/init/komodo
+doas chmod 755 /etc/init.d/komodo
 
 ### ENABLE BOOT START
-doas rc-update add container_komodo default
+doas rc-update add komodo default
 
 ### START KOMODO
-doas rc-service container_komodo start
+doas rc-service komodo start

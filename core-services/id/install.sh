@@ -21,11 +21,11 @@ curl -sL -o /opt/core-services/id/.env -H 'Cache-Control: no-cache, no-store' ht
 sed -i "s#__APP_URL__#$service_url#g" /opt/core-services/id/.env
 
 ### GET INIT FILE
-doas curl -sL -o /etc/init.d/container_id -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/init/container_id
-doas chmod 755 /etc/init.d/container_id
+doas curl -sL -o /etc/init.d/id -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/init/id
+doas chmod 755 /etc/init.d/id
 
 ### ENABLE BOOT START
-doas rc-update add container_id default
+doas rc-update add id default
 
 ### START POCKET-ID
-doas rc-service container_id start
+doas rc-service id start
