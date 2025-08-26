@@ -14,7 +14,7 @@ services:
       tsbridge.service.port: "1411"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${SERVICE_PATH}/core/id/data:/app/data
+      - /opt/core-services/id/data:/app/data
     healthcheck:
       test: "curl -f http://localhost:1411/healthz"
       interval: 1m30s

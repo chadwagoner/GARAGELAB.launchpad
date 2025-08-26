@@ -4,7 +4,7 @@ name="id"
 description="container - id"
 
 restart_command="/usr/bin/docker compose -f /opt/core-services/id/compose.yaml restart"
-start_command="/usr/bin/docker compose -f /opt/core-services/id/compose.yaml up"
+start_command="/usr/bin/docker compose -f /opt/core-services/id/compose.yaml up -d"
 stop_command="/usr/bin/docker compose -f /opt/core-services/id/compose.yaml down"
 stop_command_args="--rmi all --volumes"
 
