@@ -108,13 +108,13 @@ if [[ $install_docker == true ]]; then
   doas docker network create management >/dev/null 2>&1
   doas docker network create proxy >/dev/null 2>&1
 
-  ### CREATE CORE SERVICES DIRECTORY
-  doas mkdir -p /opt/core-services
-  doas chown -R alpine:alpine /opt/core-services
-
   ### CREATE CORE AGENTS DIRECTORY
   doas mkdir -p /opt/core-agents
   doas chown -R alpine:alpine /opt/core-agents
+
+  ### CREATE CORE SERVICES DIRECTORY
+  doas mkdir -p /opt/core-services
+  doas chown -R alpine:alpine /opt/core-services
 
   ### CREATE DEFAULT SERVICE DIRECTORY
   doas mkdir -p /opt/services
