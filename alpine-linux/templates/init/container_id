@@ -1,0 +1,32 @@
+#!/sbin/openrc-run
+
+name="id"
+description="container - id"
+
+restart_command="/usr/bin/docker compose -f /opt/core-services/id/compose.yaml restart"
+start_command="/usr/bin/docker compose -f /opt/core-services/id/compose.yaml up"
+stop_command="/usr/bin/docker compose -f /opt/core-services/id/compose.yaml down"
+stop_command_args="--rmi all --volumes"
+
+depend() {
+        need container_tsbridge
+        use docker
+}
+
+start() {
+        ebegin "STARTING - $name"
+        ${start_command}
+        eend $?
+}
+
+stop() {
+        ebegin "STOPPING - $name"
+        ${stop_command} ${stop_command_args}
+        eend $?
+}
+
+restart() {
+        ebegin "RESTARTING - $name"
+        ${restart_command}
+        eend $?
+}
