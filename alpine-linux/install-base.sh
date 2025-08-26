@@ -46,8 +46,11 @@ if [[ $install_tailscale == true ]]; then
   apk_command+="tailscale@edge-community "
 fi
 
-read -p '[OPTIONAL] ENABLE AUTOMATIC MONTHLY UPDATES [true/FALSE]: ' enable_patchwork < /dev/tty
-enable_patchwork=${enable_patchwork:-false}
+read -p '[OPTIONAL] ENABLE AUTOMATIC SYSTEM UPDATES MONTHLY [true/FALSE]: ' enable_system_update < /dev/tty
+enable_system_update=${enable_system_update:-false}
+
+read -p '[OPTIONAL] ENABLE AUTOMATIC CORE SERVICES/AGENTS UPDATES WEEKLY [true/FALSE]: ' enable_core_update < /dev/tty
+enable_core_update=${enable_core_update:-false}
 
 read -p '[REQUIRED] IS THIS A PRIMARY DEVICE [TRUE/false]: ' primary_device < /dev/tty
 primary_device=${primary_device:-true}
@@ -139,11 +142,16 @@ if [[ $install_tailscale == true ]]; then
   doas rc-service tailscale start >/dev/null 2>&1
 fi
 
-### ENABLE PATCHWORK
-if [[ $enable_patchwork == true ]]; then
-  ### INSTALL PATCHWORK
-  doas curl -sL -o /etc/periodic/monthly/patchwork -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/periodic/monthly/patchwork
-  doas chmod 755 /etc/periodic/monthly/patchwork
+### ENABLE AUTOMATIC SYSTEM UPDATE
+if [[ $enable_system_update == true ]]; then
+  doas curl -sL -o /etc/periodic/monthly/system-update -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/periodic/monthly/system-update
+  doas chmod 755 /etc/periodic/monthly/system-update
+fi
+
+### ENABLE AUTOMATIC CORE UPDATE
+if [[ $enable_core_update == true ]]; then
+  doas curl -sL -o /etc/periodic/weekly/core-update -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/periodic/weekly/core-update
+  doas chmod 755 /etc/periodic/weekly/core-update
 fi
 
 ### RUN SYNC
