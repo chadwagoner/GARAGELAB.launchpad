@@ -99,7 +99,7 @@ if [[ $install_docker == true ]]; then
   doas addgroup alpine docker
 
   ### SLEEP TO ALLOW DOCKER TO START
-  sleep 3
+  sleep 5
 
   ### CREATE DEFAULT DOCKER NETWORKS
   doas docker network create db >/dev/null 2>&1
