@@ -1,0 +1,43 @@
+services:
+  komodo:
+    image: ghcr.io/moghtech/komodo-core:1.19.1
+    container_name: komodo
+    restart: unless-stopped
+    depends_on:
+      - komodo-db
+    env_file:
+      - .env
+    networks:
+      - db
+      - proxy
+    labels:
+      komodo.skip:
+      tsbridge.enable: true
+      tsbridge.service.name: "komodo"
+      tsbridge.service.port: "9120"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/core-services/komodo/backups:/backups
+      - /opt/core-services/komodo/syncs:/syncs
+
+  komodo-db:
+    image: mongo:8.0.13
+    container_name: komodo-db
+    restart: unless-stopped
+    command: --quiet --wiredTigerCacheSizeGB 0.25
+    env_file:
+      - .env
+    networks:
+      - db
+    labels:
+      komodo.skip:
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/core-services/mongo/config:/data/configdb
+      - /opt/core-services/mongo/data:/data/db
+
+networks:
+  db:
+    external: true
+  proxy:
+    external: true
