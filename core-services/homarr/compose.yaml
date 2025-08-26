@@ -1,0 +1,24 @@
+services:
+  homarr:
+    image: ghcr.io/homarr-labs/homarr:v1.34.0
+    container_name: homarr
+    restart: unless-stopped
+    profiles:
+      - homarr
+    env_file:
+      - .env
+    networks:
+      - proxy
+    labels:
+      komodo.skip:
+      tsbridge.enable: true
+      tsbridge.service.name: "homarr"
+      tsbridge.service.port: "7575"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/core-services/homarr/data:/appdata
+
+networks:
+  proxy:
+    external: true
