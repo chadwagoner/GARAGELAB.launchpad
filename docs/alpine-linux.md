@@ -5,7 +5,7 @@
 ### PRE-REQUISITE
 
 ```bash
-doas apk add -U bash curl --quiet
+brew install macpine
 ```
 
 ### LOCAL DEV
@@ -23,6 +23,12 @@ curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.co
 ```
 
 ### INSTALL
+
+#### PRE-REQUISITE
+
+```bash
+doas apk add -U bash curl --quiet
+```
 
 #### BASE
 
