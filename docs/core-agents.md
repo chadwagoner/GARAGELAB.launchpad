@@ -2,34 +2,30 @@
 
 ## CORE - AGENTS
 
-### INSTALL
+### BESZEL-AGENT
+
+#### INSTALL
 
 ```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/agents/install.sh | bash
+curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-agents/beszel-agent/install.sh | bash
 ```
 
-### CONFIGURE
-
-#### KOMODO AGENT
+#### UNINSTALL
 
 ```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/agents/configure-komodo-agent.sh | bash
+curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-agents/beszel-agent/uninstall.sh | bash
 ```
 
-### UNINSTALL
+### KOMODO-AGENT
+
+#### INSTALL
 
 ```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/agents/uninstall.sh | bash
+curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-agents/komodo-agent/install.sh | bash
 ```
 
-### UPDATE
+#### UNINSTALL
 
 ```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/agents/update.sh | bash
-```
-
-#### UPDATE KOMODO-AGENT
-
-```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/agents/update-komodo-agent.sh | bash
+curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-agents/komodo-agent/uninstall.sh | bash
 ```
