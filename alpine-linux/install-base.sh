@@ -66,8 +66,8 @@ else
 fi
 
 ### DISABLE IPV6 NETWORKING
-echo -e "net.ipv6.conf.all.disable_ipv6 = 1" | doas tee /etc/sysctl.d/99-system.conf >/dev/null
-doas sysctl -p /etc/sysctl.d/99-system.conf >/dev/null
+echo -e "net.ipv6.conf.all.disable_ipv6 = 1" | doas tee /etc/sysctl.d/99-system.conf >/dev/null 2>&1
+doas sysctl -p /etc/sysctl.d/99-system.conf >/dev/null 2>&1
 
 ### UPDATE OS
 doas apk upgrade -U --quiet
