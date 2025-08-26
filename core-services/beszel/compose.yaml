@@ -1,0 +1,21 @@
+services:
+  beszel:
+    image: henrygd/beszel:0.12.4
+    container_name: beszel
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - proxy
+    labels:
+      komodo.skip:
+      tsbridge.enable: true
+      tsbridge.service.name: "beszel"
+      tsbridge.service.port: "8090"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/core-services/beszel/data:/beszel_data
+
+networks:
+  proxy:
+    external: true
