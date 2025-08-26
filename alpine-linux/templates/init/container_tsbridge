@@ -4,7 +4,7 @@ name="tsbridge"
 description="container - tsbridge"
 
 restart_command="/usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml restart"
-start_command="/usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml up"
+start_command="/usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml up -d"
 stop_command="/usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml down"
 stop_command_args="--rmi all --volumes"
 
