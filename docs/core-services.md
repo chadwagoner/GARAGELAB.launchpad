@@ -2,52 +2,16 @@
 
 ## CORE - SERVICES
 
-### INSTALL
+### TSBRIDGE
+
+#### INSTALL
 
 ```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/install.sh | bash
+curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/tsbridge/install.sh | bash
 ```
 
-### CONFIGURE
-
-#### ID
+#### UNINSTALL
 
 ```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/configure-id.sh | bash
-```
-
-#### KOMODO
-
-```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/configure-komodo.sh | bash
-```
-
-#### HOMARR
-
-```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/configure-homarr.sh | bash
-```
-
-### UNINSTALL
-
-```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/uninstall.sh | bash
-```
-
-### UPDATE
-
-```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/update.sh | bash
-```
-
-#### UPDATE ID
-
-```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/update-id.sh | bash
-```
-
-#### UPDATE KOMODO
-
-```bash
-curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core/services/update-komodo.sh | bash
+curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/tsbridge/uninstall.sh | bash
 ```
