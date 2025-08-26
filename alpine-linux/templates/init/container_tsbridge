@@ -1,0 +1,26 @@
+#!/sbin/openrc-run
+
+name="tsbridge"
+description="container - tsbridge"
+
+depend() {
+        use docker
+}
+
+start() {
+        ebegin "Starting tsbridge"
+        /usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml up --detach
+        eend $?
+}
+
+stop() {
+        ebegin "Stopping tsbridge"
+        /usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml stop
+        eend $?
+}
+
+restart() {
+        ebegin "Restarting tsbridge"
+        /usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml restart
+        eend $?
+}

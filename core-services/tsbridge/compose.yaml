@@ -1,0 +1,24 @@
+services:
+  tsbridge:
+    image: ghcr.io/jtdowney/tsbridge:v0.11.1
+    container_name: tsbridge
+    command: ["--provider", "docker"]
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - proxy
+    labels:
+      komodo.skip:
+      tsbridge.tailscale.default_tags: "tag:proxy"
+      tsbridge.tailscale.oauth_client_id_env: ${TS_OAUTH_CLIENT_ID}
+      tsbridge.tailscale.oauth_client_secret_env: ${TS_OAUTH_CLIENT_SECRET}
+      tsbridge.tailscale.state_dir: "/var/lib/tsbridge"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/core-services/tsbridge/data:/var/lib/tsbridge
+
+networks:
+  proxy:
+    external: true
