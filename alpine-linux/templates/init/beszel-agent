@@ -1,0 +1,31 @@
+#!/sbin/openrc-run
+
+name="beszel-agent"
+description="container - beszel-agent"
+
+restart_command="/usr/bin/docker compose -f /opt/core-agents/beszel-agent/compose.yaml restart"
+start_command="/usr/bin/docker compose -f /opt/core-agents/beszel-agent/compose.yaml up -d"
+stop_command="/usr/bin/docker compose -f /opt/core-agents/beszel-agent/compose.yaml down"
+stop_command_args="--rmi all --volumes"
+
+depend() {
+        use docker
+}
+
+start() {
+        ebegin "STARTING - $name"
+        ${start_command}
+        eend $?
+}
+
+stop() {
+        ebegin "STOPPING - $name"
+        ${stop_command} ${stop_command_args}
+        eend $?
+}
+
+restart() {
+        ebegin "RESTARTING - $name"
+        ${restart_command}
+        eend $?
+}
