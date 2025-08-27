@@ -25,7 +25,7 @@ services:
       - ${SERVICE_PATH}/core/tsbridge/data:/var/lib/tsbridge
 
   id:
-    image: ghcr.io/pocket-id/pocket-id:v1.6.4
+    image: ghcr.io/pocket-id/pocket-id:v1.10.0
     container_name: id
     restart: unless-stopped
     profiles:
