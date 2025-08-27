@@ -3,7 +3,7 @@
 
 services:
   komodo-agent:
-    image: ghcr.io/moghtech/komodo-periphery:1.18.4
+    image: ghcr.io/moghtech/komodo-periphery:1.19.1
     container_name: komodo-agent
     restart: unless-stopped
     profiles:
