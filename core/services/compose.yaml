@@ -75,7 +75,7 @@ services:
       - ${SERVICE_PATH}/core/komodo/syncs:/syncs
 
   mongo:
-    image: mongo:8.0.12
+    image: mongo:8.0.13
     container_name: mongo
     restart: unless-stopped
     profiles:
