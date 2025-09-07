@@ -46,6 +46,7 @@ curl -sL -o /opt/core-services/homarr/.env -H 'Cache-Control: no-cache, no-store
 
 ### REPLACE .ENV VARIABLES
 sed -i "s#__APP_URL__#$service_url#g" /opt/core-services/homarr/.env
+sed -i "s#__ENCRYPTION_KEY__#$encryption_key#g" /opt/core-services/homarr/.env
 sed -i "s#__OIDC_CLIENT_ID__#$oidc_client_id#g" /opt/core-services/homarr/.env
 sed -i "s#__OIDC_CLIENT_SECRET__#$oidc_client_secret#g" /opt/core-services/homarr/.env
 sed -i "s#__OIDC_ADMIN_GROUP__#$oidc_admin_group#g" /opt/core-services/homarr/.env
