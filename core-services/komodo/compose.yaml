@@ -33,8 +33,8 @@ services:
       komodo.skip:
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /opt/core-services/mongo/config:/data/configdb
-      - /opt/core-services/mongo/data:/data/db
+      - /opt/core-services/komodo-db/config:/data/configdb
+      - /opt/core-services/komodo-db/data:/data/db
 
 networks:
   db:
