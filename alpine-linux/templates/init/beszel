@@ -9,7 +9,7 @@ stop_command="/usr/bin/docker compose -f /opt/core-services/beszel/compose.yaml 
 stop_command_args="--rmi all --volumes"
 
 depend() {
-        need container_id
+        need id
         use docker tailscale
 }
 

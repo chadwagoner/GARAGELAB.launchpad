@@ -9,7 +9,7 @@ stop_command="/usr/bin/docker compose -f /opt/core-services/id/compose.yaml down
 stop_command_args="--rmi all --volumes"
 
 depend() {
-        need container_tsbridge
+        need tsbridge
         use docker tailscale
 }
 
