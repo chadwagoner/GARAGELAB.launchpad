@@ -4,75 +4,85 @@
 
 ### UPDATE CORE SERVICES
 ### TSBRIDGE
-if [[ -n '\$(docker container list --filter 'name=^tsbridge$' --quiet)' ]]; then
+if [[ -n '$(docker container list --filter "name=^tsbridge$" --quiet)' ]]; then
   local_compose=$(cat /opt/core-services/tsbridge/compose.yaml | sha256sum | awk '{print $1}')
   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/tsbridge/compose.yaml | sha256sum | awk '{print $1}')
 
-  if [[ $local_services != $remote_services ]]; then
+  if [[ $local_compose != $remote_compose ]]; then
     curl -sL -o /opt/core-services/tsbridge/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/tsbridge/compose.yaml
     /usr/bin/docker compose -f /opt/core-services/tsbridge/compose.yaml up -d
     echo "SUCCESS: TSBRIDGE UPDATED..."
     sleep 10
+  else
+    echo "INFO: TSBRIDGE IS CURRENT... Skipping"
   fi
 else
   echo "WARNING: TSBRIDGE DOES NOT EXIST... Skipping"
 fi
 
 ### POCKET-ID
-if [[ -n '\$(docker container list --filter 'name=^id$' --quiet)' ]]; then
+if [[ -n '$(docker container list --filter "name=^id$" --quiet)' ]]; then
   local_compose=$(cat /opt/core-services/id/compose.yaml | sha256sum | awk '{print $1}')
   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/id/compose.yaml | sha256sum | awk '{print $1}')
 
-  if [[ $local_services != $remote_services ]]; then
+  if [[ $local_compose != $remote_compose ]]; then
     curl -sL -o /opt/core-services/id/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/id/compose.yaml
     /usr/bin/docker compose -f /opt/core-services/id/compose.yaml up -d
     echo "SUCCESS: POCKET-ID UPDATED..."
     sleep 10
+  else
+    echo "INFO: POCKET-ID IS CURRENT... Skipping"
   fi
 else
   echo "WARNING: POCKET-ID DOES NOT EXIST... Skipping"
 fi
 
 ### KOMODO
-if [[ -n '\$(docker container list --filter 'name=^komodo$' --quiet)' ]]; then
+if [[ -n '$(docker container list --filter "name=^komodo$" --quiet)' ]]; then
   local_compose=$(cat /opt/core-services/komodo/compose.yaml | sha256sum | awk '{print $1}')
   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/komodo/compose.yaml | sha256sum | awk '{print $1}')
 
-  if [[ $local_services != $remote_services ]]; then
+  if [[ $local_compose != $remote_compose ]]; then
     curl -sL -o /opt/core-services/komodo/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/komodo/compose.yaml
     /usr/bin/docker compose -f /opt/core-services/komodo/compose.yaml up -d
     echo "SUCCESS: KOMODO UPDATED..."
     sleep 10
+  else
+    echo "INFO: KOMODO IS CURRENT... Skipping"
   fi
 else
   echo "WARNING: KOMODO DOES NOT EXIST... Skipping"
 fi
 
 ### HOMARR
-if [[ -n '\$(docker container list --filter 'name=^homarr$' --quiet)' ]]; then
+if [[ -n '$(docker container list --filter "name=^homarr$" --quiet)' ]]; then
   local_compose=$(cat /opt/core-services/homarr/compose.yaml | sha256sum | awk '{print $1}')
   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/homarr/compose.yaml | sha256sum | awk '{print $1}')
 
-  if [[ $local_services != $remote_services ]]; then
+  if [[ $local_compose != $remote_compose ]]; then
     curl -sL -o /opt/core-services/homarr/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/homarr/compose.yaml
     /usr/bin/docker compose -f /opt/core-services/homarr/compose.yaml up -d
     echo "SUCCESS: HOMARR UPDATED..."
     sleep 10
+  else
+    echo "INFO: HOMARR IS CURRENT... Skipping"
   fi
 else
   echo "WARNING: HOMARR DOES NOT EXIST... Skipping"
 fi
 
 ### BESZEL
-if [[ -n '\$(docker container list --filter 'name=^beszel$' --quiet)' ]]; then
+if [[ -n '$(docker container list --filter "name=^beszel$" --quiet)' ]]; then
   local_compose=$(cat /opt/core-services/beszel/compose.yaml | sha256sum | awk '{print $1}')
   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/beszel/compose.yaml | sha256sum | awk '{print $1}')
 
-  if [[ $local_services != $remote_services ]]; then
+  if [[ $local_compose != $remote_compose ]]; then
     curl -sL -o /opt/core-services/beszel/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/beszel/compose.yaml
     /usr/bin/docker compose -f /opt/core-services/beszel/compose.yaml up -d
     echo "SUCCESS: BESZEL UPDATED..."
     sleep 10
+  else
+    echo "INFO: BESZEL IS CURRENT... Skipping"
   fi
 else
   echo "WARNING: BESZEL DOES NOT EXIST... Skipping"
@@ -80,30 +90,34 @@ fi
 
 ### UPDATE CORE AGENTS
 ### KOMODO-AGENT
-if [[ -n '\$(docker container list --filter 'name=^komodo-agent$' --quiet)' ]]; then
+if [[ -n '$(docker container list --filter "name=^komodo-agent$" --quiet)' ]]; then
   local_compose=$(cat /opt/core-agents/komodo-agent/compose.yaml | sha256sum | awk '{print $1}')
   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-agents/komodo-agent/compose.yaml | sha256sum | awk '{print $1}')
 
-  if [[ $local_services != $remote_services ]]; then
+  if [[ $local_compose != $remote_compose ]]; then
     curl -sL -o /opt/core-agents/komodo-agent/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-agents/komodo-agent/compose.yaml
     /usr/bin/docker compose -f /opt/core-agents/komodo-agent/compose.yaml up -d
     echo "SUCCESS: KOMODO-AGENT UPDATED..."
     sleep 10
+  else
+    echo "INFO: KOMODO-AGENT IS CURRENT... Skipping"
   fi
 else
   echo "WARNING: KOMODO-AGENT DOES NOT EXIST... Skipping"
 fi
 
 ### BESZEL-AGENT
-if [[ -n '\$(docker container list --filter 'name=^beszel-agent$' --quiet)' ]]; then
+if [[ -n '$(docker container list --filter "name=^beszel-agent$" --quiet)' ]]; then
   local_compose=$(cat /opt/core-agents/beszel-agent/compose.yaml | sha256sum | awk '{print $1}')
   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-agents/beszel-agent/compose.yaml | sha256sum | awk '{print $1}')
 
-  if [[ $local_services != $remote_services ]]; then
+  if [[ $local_compose != $remote_compose ]]; then
     curl -sL -o /opt/core-agents/beszel-agent/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-agents/beszel-agent/compose.yaml
     /usr/bin/docker compose -f /opt/core-agents/beszel-agent/compose.yaml up -d
     echo "SUCCESS: BESZEL-AGENT UPDATED..."
     sleep 10
+  else
+    echo "INFO: BESZEL-AGENT IS CURRENT... Skipping"
   fi
 else
   echo "WARNING: BESZEL-AGENT DOES NOT EXIST... Skipping"
