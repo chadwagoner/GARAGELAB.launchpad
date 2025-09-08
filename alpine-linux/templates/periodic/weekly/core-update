@@ -29,7 +29,7 @@ if [[ -n '$(docker container list --filter "name=^id$" --quiet)' ]]; then
     curl -sL -o /opt/core-services/id/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/id/compose.yaml
     /usr/bin/docker compose -f /opt/core-services/id/compose.yaml up -d
     echo "SUCCESS: POCKET-ID UPDATED..."
-    sleep 10
+    sleep 30
   else
     echo "INFO: POCKET-ID IS CURRENT... Skipping"
   fi
