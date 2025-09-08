@@ -1,6 +1,6 @@
 services:
   komodo:
-    image: ghcr.io/moghtech/komodo-core:1.19.1
+    image: ghcr.io/moghtech/komodo-core:1.19.3
     container_name: komodo
     restart: unless-stopped
     depends_on:
