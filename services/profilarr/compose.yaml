@@ -1,0 +1,11 @@
+services:
+  profilarr:
+    image: santiagosayshey/profilarr:latest
+    container_name: profilarr
+    restart: unless-stopped
+    environment:
+      PGID: 1000
+      PUID: 1000
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH}/profilarr/config:/config

@@ -1,0 +1,8 @@
+services:
+  profilarr:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

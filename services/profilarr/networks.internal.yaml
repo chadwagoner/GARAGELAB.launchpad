@@ -1,0 +1,10 @@
+services:
+  profilarr:
+    networks:
+      - internal
+    ports:
+      - 6868:6868
+
+networks:
+  internal:
+    external: true

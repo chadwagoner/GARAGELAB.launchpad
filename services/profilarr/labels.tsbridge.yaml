@@ -1,0 +1,6 @@
+services:
+  profilarr:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "profilarr"
+      tsbridge.service.port: "6868"
