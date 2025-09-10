@@ -1,0 +1,5 @@
+{    
+  "[dockercompose]": {
+      "editor.codeLens": false
+  }
+}
