@@ -1,0 +1,6 @@
+services:
+  cleanuparr:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "cleanuparr"
+      tsbridge.service.port: "11011"

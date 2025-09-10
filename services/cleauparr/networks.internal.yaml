@@ -1,0 +1,10 @@
+services:
+  cleanuparr:
+    networks:
+      - internal
+    ports:
+      - 11011:11011
+
+networks:
+  internal:
+    external: true

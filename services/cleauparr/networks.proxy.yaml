@@ -1,0 +1,8 @@
+services:
+  cleanuparr:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
