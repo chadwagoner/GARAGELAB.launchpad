@@ -1,0 +1,6 @@
+services:
+  huntarr:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "huntarr"
+      tsbridge.service.port: "9705"

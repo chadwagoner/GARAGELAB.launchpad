@@ -1,0 +1,10 @@
+services:
+  huntarr:
+    networks:
+      - internal
+    ports:
+      - 9705:9705
+
+networks:
+  internal:
+    external: true

@@ -1,0 +1,8 @@
+services:
+  huntarr:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
