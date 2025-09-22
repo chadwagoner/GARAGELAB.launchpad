@@ -25,12 +25,6 @@ if [[ -z $oidc_client_secret ]]; then
   exit 1
 fi
 
-read -p '[REQUIRED] OIDC ADMIN GROUP: ' oidc_admin_group < /dev/tty
-if [[ -z $oidc_admin_group ]]; then
-  echo "ERROR: OIDC ADMIN GROUP REQUIRED... Exiting"
-  exit 1
-fi
-
 ### MAKE SECRET ENCRYPTION KEY
 encryption_key=$(openssl rand -hex 32)
 
@@ -49,7 +43,6 @@ sed -i "s#__APP_URL__#$service_url#g" /opt/core-services/homarr/.env
 sed -i "s#__ENCRYPTION_KEY__#$encryption_key#g" /opt/core-services/homarr/.env
 sed -i "s#__OIDC_CLIENT_ID__#$oidc_client_id#g" /opt/core-services/homarr/.env
 sed -i "s#__OIDC_CLIENT_SECRET__#$oidc_client_secret#g" /opt/core-services/homarr/.env
-sed -i "s#__OIDC_ADMIN_GROUP__#$oidc_admin_group#g" /opt/core-services/homarr/.env
 sed -i "s#__OIDC_PROVIDER__#$oidc_provider#g" /opt/core-services/homarr/.env
 
 ### GET INIT FILE
