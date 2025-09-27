@@ -1,6 +1,6 @@
 services:
   beszel:
-    image: henrygd/beszel:0.12.9
+    image: henrygd/beszel:0.12.12
     container_name: beszel
     restart: unless-stopped
     env_file:
