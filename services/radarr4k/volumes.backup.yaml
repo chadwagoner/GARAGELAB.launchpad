@@ -1,0 +1,4 @@
+services:
+  radarr4k:
+    volumes:
+      - ${BACKUP_PATH}/radarr4k:/config/Backups/scheduled
