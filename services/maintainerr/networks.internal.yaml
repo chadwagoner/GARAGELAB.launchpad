@@ -1,0 +1,10 @@
+services:
+  maintainerr:
+    networks:
+      - internal
+    ports:
+      - 6246:6246
+
+networks:
+  internal:
+    external: true

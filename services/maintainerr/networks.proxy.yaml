@@ -1,0 +1,8 @@
+services:
+  maintainerr:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

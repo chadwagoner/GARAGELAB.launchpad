@@ -1,0 +1,6 @@
+services:
+  maintainerr:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "maintainerr"
+      tsbridge.service.port: "6246"
