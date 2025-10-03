@@ -16,6 +16,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /proc:/proc
       - /opt/core-agents/komodo-agent:/opt/core-agents/komodo-agent
+      - /opt/services:/opt/services
 
 networks:
   management:
