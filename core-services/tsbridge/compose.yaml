@@ -1,6 +1,6 @@
 services:
   tsbridge:
-    image: ghcr.io/jtdowney/tsbridge:v0.12.0
+    image: ghcr.io/jtdowney/tsbridge:v0.12.1
     container_name: tsbridge
     command: ["--provider", "docker"]
     restart: unless-stopped
