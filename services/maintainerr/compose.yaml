@@ -3,6 +3,7 @@ services:
     image: ghcr.io/jorenn92/maintainerr:latest
     container_name: maintainerr
     restart: unless-stopped
+    user: 1000:1000
     environment:
       PGID: 1000
       PUID: 1000
