@@ -1,0 +1,10 @@
+services:
+  pulsarr:
+    networks:
+      - internal
+    ports:
+      - 3003:3003
+
+networks:
+  internal:
+    external: true

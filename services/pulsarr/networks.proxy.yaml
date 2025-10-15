@@ -1,0 +1,8 @@
+services:
+  pulsarr:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

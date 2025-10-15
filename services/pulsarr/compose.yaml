@@ -1,0 +1,11 @@
+services:
+  pulsarr:
+    image: lakker/pulsarr:latest
+    container_name: pulsarr
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH}/pulsarr/.env:/app/.env
+      - ${SERVICE_PATH}/pulsarr/data:/app/data

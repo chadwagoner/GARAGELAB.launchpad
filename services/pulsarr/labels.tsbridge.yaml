@@ -1,0 +1,6 @@
+services:
+  pulsarr:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "pulsarr"
+      tsbridge.service.port: "3003"
