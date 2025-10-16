@@ -6,5 +6,5 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${SERVICE_PATH}/handbrake/config:/config:rw
-      - ${SERVICE_PATH}/converted:/output:rw
+      - ${CONVERT_PATH}:/output:rw
       - ${MEDIA_PATH}:/storage:ro
