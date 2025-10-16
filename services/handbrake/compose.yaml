@@ -1,0 +1,10 @@
+services:
+  handbrake:
+    image: jlesage/handbrake:latest
+    container_name: handbrake
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH}/handbrake/config:/config:rw
+      - ${SERVICE_PATH}/converted:/output:rw
+      - ${MEDIA_PATH}:/media:ro

@@ -1,0 +1,10 @@
+services:
+  handbrake:
+    networks:
+      - internal
+    ports:
+      - 5800:5800
+
+networks:
+  internal:
+    external: true

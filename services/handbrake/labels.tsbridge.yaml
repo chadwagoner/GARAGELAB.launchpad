@@ -1,0 +1,6 @@
+services:
+  handbrake:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "handbrake"
+      tsbridge.service.port: "5800"

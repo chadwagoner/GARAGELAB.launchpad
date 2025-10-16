@@ -1,0 +1,8 @@
+services:
+  handbrake:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
