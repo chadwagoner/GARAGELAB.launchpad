@@ -7,4 +7,4 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ${SERVICE_PATH}/handbrake/config:/config:rw
       - ${SERVICE_PATH}/converted:/output:rw
-      - ${MEDIA_PATH}:/media:ro
+      - ${MEDIA_PATH}:/storage:ro
