@@ -1,0 +1,10 @@
+services:
+  stash:
+    networks:
+      - internal
+    ports:
+      - 9999:9999
+
+networks:
+  internal:
+    external: true

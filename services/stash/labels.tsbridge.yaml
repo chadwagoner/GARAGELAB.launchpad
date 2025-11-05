@@ -1,0 +1,6 @@
+services:
+  stash:
+    labels:
+      tsbridge.enable: true
+      tsbridge.service.name: "stash"
+      tsbridge.service.port: "9999"

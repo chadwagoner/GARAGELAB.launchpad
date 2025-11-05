@@ -1,0 +1,19 @@
+services:
+  stash:
+    image: stashapp/stash:latest
+    container_name: stash
+    restart: unless-stopped
+    environment:
+      - STASH_STASH=/data/
+      - STASH_GENERATED=/generated/
+      - STASH_METADATA=/metadata/
+      - STASH_CACHE=/cache/
+      - STASH_PORT=9999
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH}/stash/config:/root/.stash
+      - ${MEDIA_PATH}/${ADULT_DIR}:/data
+      - ${SERVICE_PATH}/stash/metadata:/metadata
+      - ${SERVICE_PATH}/stash/cache:/cache
+      - ${SERVICE_PATH}/stash/blobs:/blobs
+      - ${SERVICE_PATH}/stash/generated:/generated

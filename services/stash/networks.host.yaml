@@ -1,0 +1,3 @@
+services:
+  stash:
+    network_mode: host

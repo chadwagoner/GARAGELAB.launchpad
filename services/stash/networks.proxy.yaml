@@ -1,0 +1,8 @@
+services:
+  stash:
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
