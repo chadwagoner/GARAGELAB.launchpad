@@ -7,6 +7,9 @@ if [[ -z $service_url ]]; then
   exit 1
 fi
 
+### MAKE SECRET ENCRYPTION KEY
+encryption_key=$(openssl rand -base64 32)
+
 ### MAKE POCKET-ID DIRECTORIES
 mkdir -p /opt/core-services/id
 mkdir -p /opt/core-services/id/data
@@ -19,6 +22,7 @@ curl -sL -o /opt/core-services/id/.env -H 'Cache-Control: no-cache, no-store' ht
 
 ### REPLACE .ENV VARIABLES
 sed -i "s#__APP_URL__#$service_url#g" /opt/core-services/id/.env
+sed -i "s#__ENCRYPTION_KEY__#$encryption_key#g" /opt/core-services/id/.env
 
 ### GET INIT FILE
 doas curl -sL -o /etc/init.d/id -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/init/id
