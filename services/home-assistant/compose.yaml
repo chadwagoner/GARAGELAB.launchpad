@@ -1,0 +1,11 @@
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:latest
+    container_name: home-assistant
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+      - ${SERVICE_PATH}/home-assistant/config:/config
