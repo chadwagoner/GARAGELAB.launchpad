@@ -25,6 +25,31 @@ if [[ $install_docker == true ]]; then
   apk_command+="docker docker-cli-compose "
 fi
 
+read -p '[OPTIONAL] INSTALL INCUS [true/FALSE]: ' install_incus < /dev/tty
+install_incus=${install_incus:-false}
+
+if [[ $install_incus == true ]]; then
+  apk_command+="incus-feature incus-feature-client "
+fi
+
+if [[ $install_incus == true ]]; then
+  read -p '[OPTIONAL] INSTALL INCUS VM PACKAGE [true/FALSE]: ' install_incus_vm < /dev/tty
+  install_incus_vm=${install_incus_vm:-false}
+
+  if [[ $install_incus_vm == true ]]; then
+    apk_command+="incus-feature-vm "
+  fi
+fi
+
+if [[ $install_incus == true ]]; then
+  read -p '[OPTIONAL] INSTALL INCUS OCI PACKAGE [true/FALSE]: ' install_incus_oci < /dev/tty
+  install_incus_oci=${install_incus_oci:-false}
+
+  if [[ $install_incus_oci == true ]]; then
+    apk_command+="incus-feature-oci "
+  fi
+fi
+
 read -p '[OPTIONAL] INSTALL NFS [true/FALSE]: ' install_nfs < /dev/tty
 install_nfs=${install_nfs:-false}
 
@@ -159,6 +184,6 @@ doas sync
 
 ### REBOOT
 if [[ $reboot == true ]]; then
-  sleep 60
+  sleep 10
   doas reboot
 fi
