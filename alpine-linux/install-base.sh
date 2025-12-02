@@ -149,6 +149,14 @@ if [[ $install_docker == true ]]; then
   doas chown -R alpine:alpine /opt/services
 fi
 
+### INSTALL INCUS
+if [[ $install_incus == true ]]; then
+  ### ENABLE BOOT START
+  doas rc-update add incusd >/dev/null 2>&1
+
+  ### START SERVICE
+  doas rc-service incusd start >/dev/null 2>&1
+
 ### INSTALL NFS
 if [[ $install_nfs == true ]]; then
   ### ENABLE BOOT START
