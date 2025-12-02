@@ -29,7 +29,7 @@ read -p '[OPTIONAL] INSTALL INCUS [true/FALSE]: ' install_incus < /dev/tty
 install_incus=${install_incus:-false}
 
 if [[ $install_incus == true ]]; then
-  apk_command+="incus-feature incus-feature-client "
+  apk_command+="nftables incus-feature incus-feature-client "
 fi
 
 if [[ $install_incus == true ]]; then
@@ -151,10 +151,16 @@ fi
 
 ### INSTALL INCUS
 if [[ $install_incus == true ]]; then
-  ### ENABLE BOOT START
+  ### ENABLE BOOT START - NFTABLES
+  doas rc-update add nftables boot >/dev/null 2>&1
+
+  ### START SERVICE - NFTABLES
+  doas rc-service nftables start >/dev/null 2>&1
+
+  ### ENABLE BOOT START - INCUS
   doas rc-update add incusd >/dev/null 2>&1
 
-  ### START SERVICE
+  ### START SERVICE - INCUS
   doas rc-service incusd start >/dev/null 2>&1
 
 ### INSTALL NFS
