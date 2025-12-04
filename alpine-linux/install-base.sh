@@ -29,7 +29,7 @@ read -p '[OPTIONAL] INSTALL INCUS [true/FALSE]: ' install_incus < /dev/tty
 install_incus=${install_incus:-false}
 
 if [[ $install_incus == true ]]; then
-  apk_command+="nftables incus-feature incus-feature-client "
+  apk_command+="nftables incus-feature@edge-community incus-feature-client@edge-community "
 fi
 
 if [[ $install_incus == true ]]; then
@@ -37,7 +37,7 @@ if [[ $install_incus == true ]]; then
   install_incus_vm=${install_incus_vm:-false}
 
   if [[ $install_incus_vm == true ]]; then
-    apk_command+="incus-feature-vm "
+    apk_command+="incus-feature-vm@edge-community "
   fi
 fi
 
@@ -46,7 +46,7 @@ if [[ $install_incus == true ]]; then
   install_incus_oci=${install_incus_oci:-false}
 
   if [[ $install_incus_oci == true ]]; then
-    apk_command+="incus-feature-oci "
+    apk_command+="incus-feature-oci@edge-community "
   fi
 fi
 
