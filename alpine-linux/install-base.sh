@@ -162,6 +162,7 @@ if [[ $install_incus == true ]]; then
 
   ### START SERVICE - INCUS
   doas rc-service incusd start >/dev/null 2>&1
+fi
 
 ### INSTALL NFS
 if [[ $install_nfs == true ]]; then
