@@ -3,7 +3,7 @@
 ### INTERNAL VARIABLES
 
 ### USER INPUT VARIABLES
-read -p '[OPTIONAL] CHANGE HOSTNAME [true/FALSE]: 'set_hostname < /dev/tty
+read -p '[OPTIONAL] CHANGE HOSTNAME [true/FALSE]: ' set_hostname < /dev/tty
 set_hostname=${set_hostname:-false}
 
 if [[ $set_hostname == true ]]; then
@@ -15,7 +15,7 @@ if [[ $set_hostname == true ]]; then
   fi
 fi
 
-read -p '[OPTIONAL] SET STATIC IP [true/FALSE]: 'set_network_static < /dev/tty
+read -p '[OPTIONAL] SET STATIC IP [true/FALSE]: ' set_network_static < /dev/tty
 set_network_static=${set_network_static:-false}
 
 if [[ $set_network_static == true ]]; then
