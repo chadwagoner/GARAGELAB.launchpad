@@ -58,6 +58,16 @@ curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.co
 curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/upgrade-base.sh | bash
 ```
 
+## FEDORA
+
+### INSTALL
+
+#### BASE
+
+```bash
+curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/fedora/install-base.sh | bash
+```
+
 ## CORE - SERVICES
 
 ### BESZEL
