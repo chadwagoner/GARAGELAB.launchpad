@@ -55,13 +55,10 @@ fi
 ### SET STATIC IP
 if [[ $set_network_static == true ]]; then
   ### FIND ACTIVE ETHERNET CONNECTION
-  connection=$(sudo nmcli connection show | grep ethernet | awk '{print $1}' >/dev/null 2>&1)
+  connection=$(sudo nmcli connection show | grep ethernet | awk '{print $1}')
 
   ### SET STATIC IP
   sudo nmcli connection modify "$connection" ipv4.method manual ipv4.addresses $desired_network_static_address ipv4.gateway $desired_network_static_gateway ipv4.dns "$desired_network_static_dns" >/dev/null 2>&1
-
-  ### RESTART NETWORK
-  sudo nmcli connection up "$connection"
 fi
 
 ### REBOOT
