@@ -21,7 +21,7 @@ services:
       - /opt/core-services/komodo/syncs:/syncs
 
   komodo-db:
-    image: mongo:8.2.2
+    image: mongo:8.2.3
     container_name: komodo-db
     restart: unless-stopped
     command: --quiet --wiredTigerCacheSizeGB 0.25
