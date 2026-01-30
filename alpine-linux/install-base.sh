@@ -29,7 +29,7 @@ read -p '[OPTIONAL] INSTALL INCUS [true/FALSE]: ' install_incus < /dev/tty
 install_incus=${install_incus:-false}
 
 if [[ $install_incus == true ]]; then
-  apk_command+="nftables incus-feature@edge-community incus-feature-client@edge-community "
+  apk_command+="incus-feature@edge-community incus-feature-client@edge-community qemu-audio-spice@edge-community "
 fi
 
 if [[ $install_incus == true ]]; then
@@ -47,6 +47,15 @@ if [[ $install_incus == true ]]; then
 
   if [[ $install_incus_oci == true ]]; then
     apk_command+="incus-feature-oci@edge-community "
+  fi
+fi
+
+if [[ $install_incus == true ]]; then
+  read -p '[OPTIONAL] INSTALL INCUS WEB UI [true/FALSE]: ' install_incus_web < /dev/tty
+  install_incus_web=${install_incus_web:-false}
+
+  if [[ $install_incus_web == true ]]; then
+    apk_command+="incus-ui-canonical@edge-testing "
   fi
 fi
 
@@ -151,17 +160,14 @@ fi
 
 ### INSTALL INCUS
 if [[ $install_incus == true ]]; then
-  ### ENABLE BOOT START - NFTABLES
-  doas rc-update add nftables boot >/dev/null 2>&1
-
-  ### START SERVICE - NFTABLES
-  doas rc-service nftables start >/dev/null 2>&1
-
   ### ENABLE BOOT START - INCUS
   doas rc-update add incusd >/dev/null 2>&1
 
   ### START SERVICE - INCUS
   doas rc-service incusd start >/dev/null 2>&1
+
+  ### TODO: INITIAL INCUS SETUP
+  ### TODO: REQUIRED CONFIG TO GET INCUS WEB UI WORKING
 fi
 
 ### INSTALL NFS
