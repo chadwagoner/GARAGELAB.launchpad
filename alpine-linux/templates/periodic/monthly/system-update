@@ -4,7 +4,7 @@
 apk upgrade -U --quiet
 
 ### RUN SYNC BEFORE REBOOT
-doas sync
+sync
 
 ### SLEEP
 sleep 60
