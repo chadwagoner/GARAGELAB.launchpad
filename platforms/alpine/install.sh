@@ -80,10 +80,10 @@ if [[ $install_tailscale == true ]]; then
   apk_pkgs+=(tailscale@edge-community)
 fi
 
-read -p '[OPTIONAL] ENABLE AUTOMATIC SYSTEM UPDATES MONTHLY [true/FALSE]: ' enable_system_update < /dev/tty
+read -p '[OPTIONAL] ENABLE AUTOMATIC SYSTEM UPDATES [true/FALSE]: ' enable_system_update < /dev/tty
 enable_system_update=${enable_system_update:-false}
 
-read -p '[OPTIONAL] ENABLE AUTOMATIC CORE UPDATES WEEKLY [true/FALSE]: ' enable_core_update < /dev/tty
+read -p '[OPTIONAL] ENABLE AUTOMATIC CORE UPDATES [true/FALSE]: ' enable_core_update < /dev/tty
 enable_core_update=${enable_core_update:-false}
 
 read -p '[REQUIRED] IS THIS A PRIMARY DEVICE [TRUE/false]: ' primary_device < /dev/tty
