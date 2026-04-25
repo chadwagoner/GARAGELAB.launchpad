@@ -1,0 +1,13 @@
+#!/bin/bash
+
+### UPDATE PACKAGES/OS
+apk upgrade -U --quiet
+
+### RUN SYNC BEFORE REBOOT
+sync
+
+### SLEEP
+sleep 60
+
+### REBOOT
+reboot
