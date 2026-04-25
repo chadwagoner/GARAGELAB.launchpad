@@ -1,0 +1,34 @@
+#!/bin/bash
+
+### USER INPUT VARIABLES
+read -p '[REQUIRED] SERVICE URL [https://<service>.<tailnet>.ts.net]: ' service_url < /dev/tty
+if [[ -z $service_url ]]; then
+  echo "ERROR: APP URL REQUIRED... Exiting"
+  exit 1
+fi
+
+### MAKE SECRET ENCRYPTION KEY
+encryption_key=$(openssl rand -base64 32)
+
+### MAKE POCKET-ID DIRECTORIES
+mkdir -p /opt/core/id/data
+
+### GET COMPOSE FILE
+curl -sL -o /opt/core/id/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/id/compose.yaml
+
+### GET .ENV FILE
+curl -sL -o /opt/core/id/.env -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/id/.env
+
+### REPLACE .ENV VARIABLES
+sed -i "s#__APP_URL__#$service_url#g" /opt/core/id/.env
+sed -i "s#__ENCRYPTION_KEY__#$encryption_key#g" /opt/core/id/.env
+
+### GET INIT FILE
+doas curl -sL -o /etc/init.d/id -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/platforms/alpine/templates/init/id
+doas chmod 755 /etc/init.d/id
+
+### ENABLE BOOT START
+doas rc-update add id default
+
+### START POCKET-ID
+doas rc-service id start
