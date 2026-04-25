@@ -27,7 +27,7 @@ sed -i "s/__TS_OAUTH_CLIENT_ID__/$tailscale_oauth_id/g" /opt/core/docktail/.env
 sed -i "s/__TS_OAUTH_CLIENT_SECRET__/$tailscale_oauth_secret/g" /opt/core/docktail/.env
 
 ### GET INIT FILE
-doas curl -sL -o /etc/init.d/docktail -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/templates/init/docktail
+doas curl -sL -o /etc/init.d/docktail -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/platforms/alpine/templates/init/docktail
 doas chmod 755 /etc/init.d/docktail
 
 ### ENABLE BOOT START
