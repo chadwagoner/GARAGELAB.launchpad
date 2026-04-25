@@ -57,3 +57,7 @@ fi
 if [[ $nfs_backup == true ]] || [[ $nfs_media == true ]]; then
   doas mount -a
 fi
+
+if [[ $nfs_backup == true ]]; then
+    mkdir -p "/mnt/backup/$HOSTNAME"
+fi
