@@ -19,25 +19,25 @@ doas apk add -U bash curl --quiet
 #### UPGRADE
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/upgrade.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/platforms/alpine/upgrade.sh)"
 ```
 
 #### RESET
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/reset.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/platforms/alpine/reset.sh)"
 ```
 
 #### CONFIGURE-NFS
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/configure-nfs.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/platforms/alpine/configure-nfs.sh)"
 ```
 
 #### CONFIGURE-TAILSCALE
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/configure-tailscale.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/platforms/alpine/configure-tailscale.sh)"
 ```
 
 ## STACKS
