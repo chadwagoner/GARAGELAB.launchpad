@@ -1,0 +1,25 @@
+services:
+  dockhand:
+    image: fnsys/dockhand:v1.0.26
+    container_name: dockhand
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - proxy
+    labels:
+      docktail.service.enable: true
+      docktail.service.name: "dockhand"
+      docktail.service.port: 3000
+      docktail.service.network: proxy
+      docktail.service.protocol: http
+      docktail.service.service-port: 443
+      docktail.service.service-protocol: https
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/core/id/data:/app/data
+
+networks:
+  proxy:
+    external: true
