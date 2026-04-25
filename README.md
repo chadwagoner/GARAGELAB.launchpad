@@ -39,3 +39,49 @@ doas apk add -U bash curl --quiet
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/alpine-linux/configure-tailscale.sh)"
 ```
+
+## STACKS
+
+### CORE
+
+#### DOCKHAND
+
+##### INSTALL
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/dockhand/install.sh)"
+```
+
+##### UNINSTALL
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/dockhand/uninstall.sh)"
+```
+
+#### DOCKTAIL
+
+##### INSTALL
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/docktail/install.sh)"
+```
+
+##### UNINSTALL
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/docktail/uninstall.sh)"
+```
+
+#### ID
+
+##### INSTALL
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/id/install.sh)"
+```
+
+##### UNINSTALL
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/id/uninstall.sh)"
+```
