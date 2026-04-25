@@ -1,0 +1,31 @@
+#!/sbin/openrc-run
+
+name="docktail"
+description="container - docktail"
+
+restart_command="/usr/bin/docker compose -f /opt/core/docktail/compose.yaml restart"
+start_command="/usr/bin/docker compose -f /opt/core/docktail/compose.yaml up -d"
+stop_command="/usr/bin/docker compose -f /opt/core/docktail/compose.yaml down"
+stop_command_args="--rmi all --volumes"
+
+depend() {
+        use docker tailscale
+}
+
+start() {
+        ebegin "STARTING - $name"
+        ${start_command}
+        eend $?
+}
+
+stop() {
+        ebegin "STOPPING - $name"
+        ${stop_command} ${stop_command_args}
+        eend $?
+}
+
+restart() {
+        ebegin "RESTARTING - $name"
+        ${restart_command}
+        eend $?
+}

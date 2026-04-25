@@ -1,0 +1,17 @@
+services:
+  docktail:
+    image: ghcr.io/marvinvr/docktail:1.4.1
+    container_name: docktail
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - proxy
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/tailscale:/var/run/tailscale
+
+networks:
+  proxy:
+    external: true
