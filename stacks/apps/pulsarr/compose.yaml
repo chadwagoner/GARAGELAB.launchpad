@@ -17,7 +17,6 @@ services:
       docktail.service.service-protocol: https
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${SERVICE_PATH:-/opt/apps}/pulsarr/.env:/app/.env
       - ${SERVICE_PATH:-/opt/apps}/pulsarr/data:/app/data
 
 networks:
