@@ -7,6 +7,13 @@ services:
       - .env
     networks:
       - proxy
+    environment:
+      RADARR_0_URL: ${RADARR_0_URL}
+      RADARR_0_API_KEY: ${RADARR_0_API_KEY}
+      SONARR_0_URL: ${SONARR_0_URL}
+      SONARR_0_API_KEY: ${SONARR_0_API_KEY}
+      LIDARR_0_URL: ${LIDARR_0_URL}
+      LIDARR_0_API_KEY: ${LIDARR_0_API_KEY}
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${SERVICE_PATH:-/opt/apps}/fetcharr/config:/app/config
