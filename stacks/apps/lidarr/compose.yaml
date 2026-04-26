@@ -1,0 +1,27 @@
+services:
+  lidarr:
+    image: linuxserver/lidarr:latest
+    container_name: lidarr
+    restart: unless-stopped
+    environment:
+      PGID: 1000
+      PUID: 1000
+    networks:
+      - proxy
+    labels:
+      docktail.service.enable: true
+      docktail.service.name: "lidarr"
+      docktail.service.port: 8686
+      docktail.service.network: proxy
+      docktail.service.protocol: http
+      docktail.service.service-port: 443
+      docktail.service.service-protocol: https
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOWNLOAD_PATH:-/opt/downloads}:/downloads
+      - ${MEDIA_PATH:-/mnt/media}:/media
+      - ${SERVICE_PATH:-/opt/apps}/lidarr/config:/config
+
+networks:
+  proxy:
+    external: true
