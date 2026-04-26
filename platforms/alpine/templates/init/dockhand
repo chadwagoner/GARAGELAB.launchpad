@@ -9,11 +9,13 @@ stop_command="/usr/bin/docker compose -f /opt/core/dockhand/compose.yaml down"
 stop_command_args="--rmi all --volumes"
 
 depend() {
+        need docktail id
         use docker tailscale
 }
 
 start() {
         ebegin "STARTING - $name"
+        sleep 15
         ${start_command}
         eend $?
 }
