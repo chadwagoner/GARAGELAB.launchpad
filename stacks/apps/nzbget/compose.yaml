@@ -1,0 +1,26 @@
+services:
+  nzbget:
+    image: linuxserver/nzbget:latest
+    container_name: nzbget
+    restart: unless-stopped
+    networks:
+      - proxy
+    environment:
+      PGID: 1000
+      PUID: 1000
+    labels:
+      docktail.service.enable: true
+      docktail.service.name: "nzbget"
+      docktail.service.port: 6789
+      docktail.service.network: proxy
+      docktail.service.protocol: http
+      docktail.service.service-port: 443
+      docktail.service.service-protocol: https
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${DOWNLOAD_PATH:-/opt/downloads}:/downloads
+      - ${SERVICE_PATH:-/opt/apps}/nzbget/config:/config
+
+networks:
+  proxy:
+    external: true
