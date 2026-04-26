@@ -1,0 +1,19 @@
+services:
+  tools:
+    image: ghcr.io/corentinth/it-tools:latest
+    container_name: tools
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      docktail.service.enable: true
+      docktail.service.name: "tools"
+      docktail.service.port: 8088
+      docktail.service.network: proxy
+      docktail.service.protocol: http
+      docktail.service.service-port: 443
+      docktail.service.service-protocol: https
+      
+networks:
+  proxy:
+    external: true
