@@ -15,6 +15,7 @@ depend() {
 
 start() {
         ebegin "STARTING - $name"
+        sleep 15
         ${start_command}
         eend $?
 }
