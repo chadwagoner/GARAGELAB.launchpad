@@ -1,0 +1,26 @@
+services:
+  maintainerr:
+    image: ghcr.io/jorenn92/maintainerr:latest
+    container_name: maintainerr
+    restart: unless-stopped
+    networks:
+      - proxy
+    user: 1000:1000
+    environment:
+      PGID: 1000
+      PUID: 1000
+    labels:
+      docktail.service.enable: true
+      docktail.service.name: "maintainerr"
+      docktail.service.port: 6246
+      docktail.service.network: proxy
+      docktail.service.protocol: tcp
+      docktail.service.service-port: 443
+      docktail.service.service-protocol: https
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH:-/opt/apps}/maintainerr/data:/opt/data
+
+networks:
+  proxy:
+    external: true
