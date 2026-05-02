@@ -1,0 +1,19 @@
+services:
+  satisfactory-server:
+    image: wolveix/satisfactory-server:latest
+    container_name: satisfactory-server
+    mem_limit: 8g
+    mem_reservation: 2g
+    restart: unless-stopped
+    networks:
+      - gaming
+    ports:
+      - 7777:7777/tcp
+      - 7777:7777/udp
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH:-/opt/apps}/satisfactory-server/config:/config
+
+networks:
+  gaming:
+    external: true
