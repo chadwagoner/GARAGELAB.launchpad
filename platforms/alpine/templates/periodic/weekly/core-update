@@ -1,1 +1,73 @@
 #!/bin/bash
+
+### UPDATE CORE SERVICES
+### DOCKTAIL
+if [[ -n '$(docker container list --filter "name=^docktail$" --quiet)' ]]; then
+  local_compose=$(cat /opt/core/docktail/compose.yaml | sha256sum | awk '{print $1}')
+  remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/docktail/compose.yaml | sha256sum | awk '{print $1}')
+
+  if [[ $local_compose != $remote_compose ]]; then
+    rc-service docktail stop
+    curl -sL -o /opt/core/docktail/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/docktail/compose.yaml
+    rc-service docktail start
+    echo "SUCCESS: DOCKTAIL UPDATED..."
+    sleep 10
+  else
+    echo "INFO: DOCKTAIL IS CURRENT... Skipping"
+  fi
+else
+  echo "WARNING: DOCKTAIL DOES NOT EXIST... Skipping"
+fi
+
+### POCKET-ID
+if [[ -n '$(docker container list --filter "name=^id$" --quiet)' ]]; then
+  local_compose=$(cat /opt/core/id/compose.yaml | sha256sum | awk '{print $1}')
+  remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/id/compose.yaml | sha256sum | awk '{print $1}')
+
+  if [[ $local_compose != $remote_compose ]]; then
+    rc-service id stop
+    curl -sL -o /opt/core/id/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/id/compose.yaml
+    rc-service id start
+    echo "SUCCESS: POCKET-ID UPDATED..."
+    sleep 10
+  else
+    echo "INFO: POCKET-ID IS CURRENT... Skipping"
+  fi
+else
+  echo "WARNING: POCKET-ID DOES NOT EXIST... Skipping"
+fi
+
+### DOCKHAND
+if [[ -n '$(docker container list --filter "name=^dockhand$" --quiet)' ]]; then
+  local_compose=$(cat /opt/core/dockhand/compose.yaml | sha256sum | awk '{print $1}')
+  remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/dockhand/compose.yaml | sha256sum | awk '{print $1}')
+
+  if [[ $local_compose != $remote_compose ]]; then
+    rc-service dockhand stop
+    curl -sL -o /opt/core/dockhand/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/dockhand/compose.yaml
+    rc-service dockhand start
+    echo "SUCCESS: DOCKHAND UPDATED..."
+    sleep 10
+  else
+    echo "INFO: DOCKHAND IS CURRENT... Skipping"
+  fi
+else
+  echo "WARNING: DOCKHAND DOES NOT EXIST... Skipping"
+fi
+
+# ### HOMARR
+# if [[ -n '$(docker container list --filter "name=^homarr$" --quiet)' ]]; then
+#   local_compose=$(cat /opt/core-services/homarr/compose.yaml | sha256sum | awk '{print $1}')
+#   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/homarr/compose.yaml | sha256sum | awk '{print $1}')
+
+#   if [[ $local_compose != $remote_compose ]]; then
+#     curl -sL -o /opt/core-services/homarr/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/homarr/compose.yaml
+#     /usr/bin/docker compose -f /opt/core-services/homarr/compose.yaml up -d
+#     echo "SUCCESS: HOMARR UPDATED..."
+#     sleep 10
+#   else
+#     echo "INFO: HOMARR IS CURRENT... Skipping"
+#   fi
+# else
+#   echo "WARNING: HOMARR DOES NOT EXIST... Skipping"
+# fi
