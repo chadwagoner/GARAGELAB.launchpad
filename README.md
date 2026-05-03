@@ -40,6 +40,20 @@ doas apk add -U bash curl --quiet
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/platforms/alpine/configure-tailscale.sh)"
 ```
 
+### PROXMOX
+
+#### ENABLE GPU PASSTHROUGH
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/platforms/proxmox/enable_gpu_passthrough.sh)"
+```
+
+#### ENABLE TAILSCALE
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/platforms/proxmox/enable_tailscale.sh)"
+```
+
 ## STACKS
 
 ### CORE
