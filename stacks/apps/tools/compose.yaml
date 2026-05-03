@@ -3,10 +3,10 @@ services:
     image: ghcr.io/corentinth/it-tools:latest
     container_name: tools
     restart: unless-stopped
-    env_file:
-      - .env
     networks:
       - proxy
+    environment:
+      BASE_URL: ${BASE_URL}
     labels:
       docktail.service.enable: true
       docktail.service.name: "tools"
