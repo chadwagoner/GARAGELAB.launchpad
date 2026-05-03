@@ -19,7 +19,7 @@ services:
       - ${SERVICE_PATH:-/opt/apps}/fetcharr/config:/app/config
       - ${SERVICE_PATH:-/opt/apps}/fetcharr/cache:/app/cache
       - ${SERVICE_PATH:-/opt/apps}/fetcharr/logs:/app/logs
-      - ${SERVICE_PATH:-/opt/apps}/fetcharr/plugins:/app/plugins    
+      - ${SERVICE_PATH:-/opt/apps}/fetcharr/plugins:/app/plugins
 
 networks:
   proxy:
