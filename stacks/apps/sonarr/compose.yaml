@@ -21,6 +21,11 @@ services:
       - ${DOWNLOAD_PATH:-/opt/downloads}:/downloads
       - ${MEDIA_PATH:-/mnt/media}:/media
       - ${SERVICE_PATH:-/opt/apps}/sonarr/config:/config
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8989 || exit 1" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
 networks:
   proxy:
