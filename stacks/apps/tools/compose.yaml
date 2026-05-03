@@ -15,12 +15,9 @@ services:
       docktail.service.protocol: http
       docktail.service.service-port: 443
       docktail.service.service-protocol: https
-    healthcheck:
-      test: [ "CMD-SHELL", "curl -f http://localhost:8088 || exit 1" ]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+
 networks:
   proxy:
     external: true
