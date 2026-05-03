@@ -3,6 +3,8 @@ services:
     image: ghcr.io/corentinth/it-tools:latest
     container_name: tools
     restart: unless-stopped
+    env_file:
+      - .env
     networks:
       - proxy
     labels:
@@ -13,6 +15,11 @@ services:
       docktail.service.protocol: http
       docktail.service.service-port: 443
       docktail.service.service-protocol: https
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8088 || exit 1" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
       
 networks:
   proxy:
