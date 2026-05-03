@@ -3,10 +3,12 @@
 name="dockhand"
 description="container - dockhand"
 
+down_command_args="--rmi all --volumes"
+down_command="/usr/bin/docker compose -f /opt/core/dockhand/compose.yaml down"
 restart_command="/usr/bin/docker compose -f /opt/core/dockhand/compose.yaml restart"
 start_command="/usr/bin/docker compose -f /opt/core/dockhand/compose.yaml up -d"
-stop_command="/usr/bin/docker compose -f /opt/core/dockhand/compose.yaml down"
-stop_command_args="--rmi all --volumes"
+stop_command="/usr/bin/docker compose -f /opt/core/dockhand/compose.yaml stop"
+upgrade_compose_command="/usr/bin/curl -sL -o /opt/core/dockhand/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/dockhand/compose.yaml"
 
 depend() {
         need docktail id
@@ -15,19 +17,27 @@ depend() {
 
 start() {
         ebegin "STARTING - $name"
-        sleep 15
+        sleep 5
         ${start_command}
         eend $?
 }
 
 stop() {
         ebegin "STOPPING - $name"
-        ${stop_command} ${stop_command_args}
+        ${stop_command}
         eend $?
 }
 
 restart() {
         ebegin "RESTARTING - $name"
         ${restart_command}
+        eend $?
+}
+
+upgrade() {
+        ebegin "UPGRADING - $name"
+        ${down_command} ${down_command_args}
+        ${upgrade_compose_command}
+        ${start_command}
         eend $?
 }

@@ -7,9 +7,7 @@ if [[ -n '$(docker container list --filter "name=^docktail$" --quiet)' ]]; then
   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/docktail/compose.yaml | sha256sum | awk '{print $1}')
 
   if [[ $local_compose != $remote_compose ]]; then
-    rc-service docktail stop
-    curl -sL -o /opt/core/docktail/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/docktail/compose.yaml
-    rc-service docktail start
+    rc-service docktail upgrade
     echo "SUCCESS: DOCKTAIL UPDATED..."
     sleep 10
   else
@@ -25,9 +23,7 @@ if [[ -n '$(docker container list --filter "name=^id$" --quiet)' ]]; then
   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/id/compose.yaml | sha256sum | awk '{print $1}')
 
   if [[ $local_compose != $remote_compose ]]; then
-    rc-service id stop
-    curl -sL -o /opt/core/id/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/id/compose.yaml
-    rc-service id start
+    rc-service id upgrade
     echo "SUCCESS: POCKET-ID UPDATED..."
     sleep 10
   else
@@ -43,9 +39,7 @@ if [[ -n '$(docker container list --filter "name=^dockhand$" --quiet)' ]]; then
   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/dockhand/compose.yaml | sha256sum | awk '{print $1}')
 
   if [[ $local_compose != $remote_compose ]]; then
-    rc-service dockhand stop
-    curl -sL -o /opt/core/dockhand/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/dockhand/compose.yaml
-    rc-service dockhand start
+    rc-service dockhand upgrade
     echo "SUCCESS: DOCKHAND UPDATED..."
     sleep 10
   else
