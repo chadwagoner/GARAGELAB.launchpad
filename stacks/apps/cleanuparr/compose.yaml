@@ -1,0 +1,31 @@
+services:
+  cleanuparr:
+    image: ghcr.io/cleanuparr/cleanuparr:latest
+    container_name: cleanuparr
+    restart: unless-stopped
+    networks:
+      - proxy
+    environment:
+      PORT: 11011
+      BASE_PATH: /cleanuparr
+      PUID: 1000
+      PGID: 1000
+      UMASK: 022
+    labels:
+      docktail.service.enable: true
+      docktail.service.name: "cleanuparr"
+      docktail.service.port: 11011
+      docktail.service.network: proxy
+      docktail.service.protocol: http
+      docktail.service.service-port: 443
+      docktail.service.service-protocol: https
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - cleanuparr.config:/config
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  cleanuparr.config:
