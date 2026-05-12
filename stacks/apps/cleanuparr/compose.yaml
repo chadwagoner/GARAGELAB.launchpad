@@ -10,7 +10,7 @@ services:
       BASE_PATH: /cleanuparr
       PUID: 1000
       PGID: 1000
-      UMASK: 022
+      UMASK: '022'
     labels:
       docktail.service.enable: true
       docktail.service.name: "cleanuparr"
