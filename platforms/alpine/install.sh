@@ -173,9 +173,11 @@ fi
 
 ### INSTALL TAILSCALE
 if [[ $install_tailscale == true ]]; then
-  ### ENABLE IP FORWARDING
+  ### ENABLE IP FORWARDING & RP FILTER
   echo -e "net.ipv4.ip_forward = 1" | doas tee -a /etc/sysctl.d/99-tailscale.conf >/dev/null 2>&1
   echo -e "net.ipv6.conf.all.forwarding = 1" | doas tee -a /etc/sysctl.d/99-tailscale.conf >/dev/null 2>&1
+  echo -e "net.ipv4.conf.all.rp_filter = 2" | doas tee -a /etc/sysctl.d/99-tailscale.conf >/dev/null 2>&1
+  echo -e "net.ipv4.conf.default.rp_filter = 2" | doas tee -a /etc/sysctl.d/99-tailscale.conf >/dev/null 2>&1
   doas sysctl -p /etc/sysctl.d/99-tailscale.conf >/dev/null 2>&1
 
   ### ENABLE BOOT START

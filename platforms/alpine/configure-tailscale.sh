@@ -4,6 +4,12 @@
 tailscale_command=""
 
 ### USER INPUT VARIABLES
+read -p '[REQUIRED] TAILSCALE TAILNET: [tailnet.ts.net]: ' tailscale_tailnet < /dev/tty
+if [[ -z $tailscale_tailnet ]]; then
+  echo "ERROR: TAILSCALE TAILNET REQUIRED... Exiting"
+  exit 1
+fi
+
 read -p '[OPTIONAL] ENABLE TAILSCALE SSH [true/FALSE]: ' tailscale_ssh < /dev/tty
 tailscale_ssh=${tailscale_ssh:-false}
 
@@ -37,5 +43,11 @@ if [[ $tailscale_subnet == true ]]; then
   tailscale_command+="--advertise-routes=$tailscale_subnet_space "
 fi
 
+### ADD TAILNET SEARCH DOMAIN TO RESOLV.CONF
+doas sed -i "1s#^search \(.*\)#search ${tailscale_tailnet} \1#" /etc/resolv.conf
+
+### ADD MAGICDNS TO RESOLV.CONF
+doas sed -i '1a nameserver 100.100.100.100' /etc/resolv.conf
+
 ### START TAILSCALE
-doas tailscale up --advertise-tags=tag:server $tailscale_command
+doas tailscale up --advertise-tags=tag:server --accept-dns=false $tailscale_command
