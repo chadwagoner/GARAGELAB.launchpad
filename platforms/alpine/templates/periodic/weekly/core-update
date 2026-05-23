@@ -7,7 +7,10 @@ if [[ -n '$(docker container list --filter "name=^docktail$" --quiet)' ]]; then
   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/docktail/compose.yaml | sha256sum | awk '{print $1}')
 
   if [[ $local_compose != $remote_compose ]]; then
-    rc-service docktail upgrade
+    rc-service docktail stop
+    rc-service docktail down
+    curl -sL -o /opt/core/docktail/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/docktail/compose.yaml
+    rc-service docktail start
     echo "SUCCESS: DOCKTAIL UPDATED..."
     sleep 10
   else
@@ -23,7 +26,10 @@ if [[ -n '$(docker container list --filter "name=^id$" --quiet)' ]]; then
   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/id/compose.yaml | sha256sum | awk '{print $1}')
 
   if [[ $local_compose != $remote_compose ]]; then
-    rc-service id upgrade
+    rc-service id stop
+    rc-service id down
+    curl -sL -o /opt/core/id/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/id/compose.yaml
+    rc-service id start
     echo "SUCCESS: POCKET-ID UPDATED..."
     sleep 10
   else
@@ -39,7 +45,10 @@ if [[ -n '$(docker container list --filter "name=^dockhand$" --quiet)' ]]; then
   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/dockhand/compose.yaml | sha256sum | awk '{print $1}')
 
   if [[ $local_compose != $remote_compose ]]; then
-    rc-service dockhand upgrade
+    rc-service dockhand stop
+    rc-service dockhand down
+    curl -sL -o /opt/core/dockhand/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/dockhand/compose.yaml
+    rc-service dockhand start
     echo "SUCCESS: DOCKHAND UPDATED..."
     sleep 10
   else
