@@ -1,0 +1,9 @@
+services:
+  homebridge:
+    image: homebridge/homebridge:latest
+    container_name: homebridge
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${SERVICE_PATH:-/opt/apps}/homebridge/config:/homebridge
