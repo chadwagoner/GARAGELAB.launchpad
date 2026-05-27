@@ -4,6 +4,8 @@ services:
     container_name: homebridge
     restart: unless-stopped
     network_mode: host
+    devices:
+      - "/dev/dri:/dev/dri"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${SERVICE_PATH:-/opt/apps}/homebridge/config:/homebridge
