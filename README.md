@@ -58,6 +58,20 @@ doas apk add -U bash curl --quiet
 
 ### CORE
 
+#### BESZEL
+
+##### INSTALL
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/beszel/install.sh)"
+```
+
+##### UNINSTALL
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/beszel/uninstall.sh)"
+```
+
 #### DOCKHAND
 
 ##### INSTALL
