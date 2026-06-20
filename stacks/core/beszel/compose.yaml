@@ -1,0 +1,24 @@
+services:
+  beszel:
+    image: henrygd/beszel:0.18.7
+    container_name: beszel
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - proxy
+    labels:
+      docktail.service.enable: true
+      docktail.service.name: "beszel"
+      docktail.service.port: 8090
+      docktail.service.network: proxy
+      docktail.service.protocol: http
+      docktail.service.service-port: 443
+      docktail.service.service-protocol: https
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /opt/core/beszel/data:/beszel_data
+
+networks:
+  proxy:
+    external: true
