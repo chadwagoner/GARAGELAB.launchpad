@@ -1,0 +1,25 @@
+services:
+  id:
+    image: ghcr.io/homarr-labs/homarr:v1.67.0
+    container_name: homarr
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - proxy
+    labels:
+      docktail.service.enable: true
+      docktail.service.name: "homarr"
+      docktail.service.port: 7575
+      docktail.service.network: proxy
+      docktail.service.protocol: http
+      docktail.service.service-port: 443
+      docktail.service.service-protocol: https
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/core/homarr/data:/appdata
+
+networks:
+  proxy:
+    external: true

@@ -114,6 +114,20 @@ doas apk add -U bash curl --quiet
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/docktail/uninstall.sh)"
 ```
 
+#### HOMARR
+
+##### INSTALL
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/homarr/install.sh)"
+```
+
+##### UNINSTALL
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/homarr/uninstall.sh)"
+```
+
 #### ID
 
 ##### INSTALL
