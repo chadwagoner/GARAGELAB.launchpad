@@ -38,11 +38,11 @@ curl -sL -o /opt/core/homarr/compose.yaml -H 'Cache-Control: no-cache, no-store'
 curl -sL -o /opt/core/homarr/.env -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/homarr/.env
 
 ### REPLACE .ENV VARIABLES
-sed -i "s#__APP_URL__#$service_url#g" /opt/core-services/homarr/.env
-sed -i "s#__ENCRYPTION_KEY__#$encryption_key#g" /opt/core-services/homarr/.env
-sed -i "s#__OIDC_CLIENT_ID__#$oidc_client_id#g" /opt/core-services/homarr/.env
-sed -i "s#__OIDC_CLIENT_SECRET__#$oidc_client_secret#g" /opt/core-services/homarr/.env
-sed -i "s#__OIDC_PROVIDER__#$oidc_provider#g" /opt/core-services/homarr/.env
+sed -i "s#__APP_URL__#$service_url#g" /opt/core/homarr/.env
+sed -i "s#__ENCRYPTION_KEY__#$encryption_key#g" /opt/core/homarr/.env
+sed -i "s#__OIDC_CLIENT_ID__#$oidc_client_id#g" /opt/core/homarr/.env
+sed -i "s#__OIDC_CLIENT_SECRET__#$oidc_client_secret#g" /opt/core/homarr/.env
+sed -i "s#__OIDC_PROVIDER__#$oidc_provider#g" /opt/core/homarr/.env
 
 ### GET INIT FILE
 doas curl -sL -o /etc/init.d/homarr -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/platforms/alpine/templates/init/homarr
