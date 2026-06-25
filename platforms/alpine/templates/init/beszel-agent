@@ -10,7 +10,6 @@ start_command="/usr/bin/docker compose -f /opt/core/beszel-agent/compose.yaml up
 stop_command="/usr/bin/docker compose -f /opt/core/beszel-agent/compose.yaml stop"
 
 depend() {
-        need docktail
         use docker tailscale
 }
 
