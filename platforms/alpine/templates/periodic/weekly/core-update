@@ -1,6 +1,44 @@
 #!/bin/bash
 
 ### UPDATE CORE SERVICES
+### BESZEL
+if [[ -n '$(docker container list --filter "name=^beszel$" --quiet)' ]]; then
+  local_compose=$(cat /opt/core/beszel/compose.yaml | sha256sum | awk '{print $1}')
+  remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/beszel/compose.yaml | sha256sum | awk '{print $1}')
+  
+  if [[ $local_compose != $remote_compose ]]; then
+    rc-service beszel stop
+    rc-service beszel down
+    curl -sL -o /opt/core/beszel/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/beszel/compose.yaml
+    rc-service beszel start
+    echo "SUCCESS: BESZEL UPDATED..."
+    sleep 10
+  else
+    echo "INFO: BESZEL IS CURRENT... Skipping"
+  fi
+else
+  echo "WARNING: BESZEL DOES NOT EXIST... Skipping"
+fi
+
+### BESZEL-AGENT
+if [[ -n '$(docker container list --filter "name=^beszel-agent$" --quiet)' ]]; then
+  local_compose=$(cat /opt/core/beszel-agent/compose.yaml | sha256sum | awk '{print $1}')
+  remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/beszel-agent/compose.yaml | sha256sum | awk '{print $1}')
+  
+  if [[ $local_compose != $remote_compose ]]; then
+    rc-service beszel-agent stop
+    rc-service beszel-agent down
+    curl -sL -o /opt/core/beszel-agent/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/beszel-agent/compose.yaml
+    rc-service beszel-agent start
+    echo "SUCCESS: BESZEL-AGENT UPDATED..."
+    sleep 10
+  else
+    echo "INFO: BESZEL-AGENT IS CURRENT... Skipping"
+  fi
+else
+  echo "WARNING: BESZEL-AGENT DOES NOT EXIST... Skipping"
+fi
+
 ### DOCKTAIL
 if [[ -n '$(docker container list --filter "name=^docktail$" --quiet)' ]]; then
   local_compose=$(cat /opt/core/docktail/compose.yaml | sha256sum | awk '{print $1}')
@@ -58,19 +96,21 @@ else
   echo "WARNING: DOCKHAND DOES NOT EXIST... Skipping"
 fi
 
-# ### HOMARR
-# if [[ -n '$(docker container list --filter "name=^homarr$" --quiet)' ]]; then
-#   local_compose=$(cat /opt/core-services/homarr/compose.yaml | sha256sum | awk '{print $1}')
-#   remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/homarr/compose.yaml | sha256sum | awk '{print $1}')
-
-#   if [[ $local_compose != $remote_compose ]]; then
-#     curl -sL -o /opt/core-services/homarr/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/core-services/homarr/compose.yaml
-#     /usr/bin/docker compose -f /opt/core-services/homarr/compose.yaml up -d
-#     echo "SUCCESS: HOMARR UPDATED..."
-#     sleep 10
-#   else
-#     echo "INFO: HOMARR IS CURRENT... Skipping"
-#   fi
-# else
-#   echo "WARNING: HOMARR DOES NOT EXIST... Skipping"
-# fi
+### HOMARR
+if [[ -n '$(docker container list --filter "name=^homarr$" --quiet)' ]]; then
+  local_compose=$(cat /opt/core/homarr/compose.yaml | sha256sum | awk '{print $1}')
+  remote_compose=$(curl -sL -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/homarr/compose.yaml | sha256sum | awk '{print $1}')
+  
+  if [[ $local_compose != $remote_compose ]]; then
+    rc-service homarr stop
+    rc-service homarr down
+    curl -sL -o /opt/core/homarr/compose.yaml -H 'Cache-Control: no-cache, no-store' https://raw.githubusercontent.com/chadwagoner/GARAGELAB.launchpad/main/stacks/core/homarr/compose.yaml
+    rc-service homarr start
+    echo "SUCCESS: HOMARR UPDATED..."
+    sleep 10
+  else
+    echo "INFO: HOMARR IS CURRENT... Skipping"
+  fi
+else
+  echo "WARNING: HOMARR DOES NOT EXIST... Skipping"
+fi
