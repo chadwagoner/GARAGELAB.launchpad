@@ -1,0 +1,39 @@
+#!/sbin/openrc-run
+
+name="beszel-agent-intel"
+description="container - beszel-agent-intel"
+
+down_command_args="--rmi all --volumes"
+down_command="/usr/bin/docker compose -f /opt/core/beszel-agent-intel/compose.yaml down"
+restart_command="/usr/bin/docker compose -f /opt/core/beszel-agent-intel/compose.yaml restart"
+start_command="/usr/bin/docker compose -f /opt/core/beszel-agent-intel/compose.yaml up -d"
+stop_command="/usr/bin/docker compose -f /opt/core/beszel-agent-intel/compose.yaml stop"
+
+depend() {
+        use docker tailscale
+}
+
+start() {
+        ebegin "STARTING - $name"
+        sleep 5
+        ${start_command}
+        eend $?
+}
+
+stop() {
+        ebegin "STOPPING - $name"
+        ${stop_command}
+        eend $?
+}
+
+restart() {
+        ebegin "RESTARTING - $name"
+        ${restart_command}
+        eend $?
+}
+
+down() {
+        ebegin "DESTROYING - $name"
+        ${down_command} ${down_command_args}
+        eend $?
+}
