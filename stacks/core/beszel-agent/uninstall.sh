@@ -9,5 +9,5 @@ doas rc-update del beszel-agent
 ### DELETE INIT FILE
 doas rm -rf /etc/init.d/beszel-agent
 
-### DELETE BESZEL DIRECTORIES
+### DELETE BESZEL-AGENT DIRECTORIES
 doas rm -rf /opt/core/beszel-agent
