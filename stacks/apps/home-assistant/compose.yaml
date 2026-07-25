@@ -11,4 +11,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
-      - ${SERVICE_PATH:-/opt/apps}/home-assistant/config:/config
+      - ha.config:/config
+
+volumes:
+  ha.config:
