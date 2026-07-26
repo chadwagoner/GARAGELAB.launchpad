@@ -1,0 +1,14 @@
+services:
+  ha-matter-server:
+    container_name: ha-matter-server
+    image: ghcr.io/home-assistant-libs/python-matter-server:stable
+    restart: unless-stopped
+    security_opt:
+      - apparmor=unconfined
+    volumes:
+      - ha-matter-server.data:/data
+      - /run/dbus:/run/dbus:ro
+    network_mode: host
+
+volumes:
+  ha-matter-server.data:
