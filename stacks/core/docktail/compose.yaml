@@ -1,6 +1,6 @@
 services:
   docktail:
-    image: ghcr.io/marvinvr/docktail:1.5.0
+    image: ghcr.io/marvinvr/docktail:1.7.3
     container_name: docktail
     restart: unless-stopped
     env_file:
